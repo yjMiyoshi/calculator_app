@@ -1,0 +1,32 @@
+/* sp ファースト */
+
+* {
+  /* padding と border を幅と高さに含める */
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  max-height: 100%;
+}
+
+body {
+  margin: 0%;
+  height: 100%;
+  max-height: 100%;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  height: 100%;
+  max-height: 100%;
+}
+
+/* PC画面 ----------------------------------------------- */
+@media (min-width: 521px) {
+
+}
