@@ -14,6 +14,8 @@ body {
   margin: 0%;
   height: 100%;
   max-height: 100%;
+  font-family: "Roboto";
+  font-size: 15px;
 }
 
 h1 {
@@ -24,9 +26,65 @@ h1 {
 .main {
   height: 100%;
   max-height: 100%;
+  margin: 12px;
+}
+
+.panel {
+  /* border: 1px, solid, rgb(218, 220, 224); */
+  border: 10px, solid, blue;
+  background-color: aqua;
+  height: 100px;
+}
+
+.calc-buttons {
+  background-color: blueviolet;
+}
+
+table {
+  /* セル間の隙間を指定 */
+  border-collapse: separate;
+  border-spacing: 4px;
+  table-layout: fixed;
+  width: 100%;
+  background-color: red;
+}
+
+tr {
+  
+}
+
+td {
+  
+}
+
+.button {
+  background-color: pink;
+  height: 36px;
+  /* margin: 4px; */
+  /* width: 100%; */
+  text-align: center;
+  border-radius: 4px;
+}
+
+.bg-color-1 {
+  background-color: rgb(218, 220, 224);
+}
+
+.bg-color-2 {
+  background-color: rgb(241, 243, 244);
+}
+
+.bg-color-3 {
+  background-color: rgb(66, 133, 244);
+}
+
+.tx-color-1 {
+  color: rgb(32, 33, 36);
+}
+
+.tx-color-2 {
+  color: rgb(255, 255, 255);
 }
 
 /* PC画面 ----------------------------------------------- */
-@media (min-width: 521px) {
-
-}
+@media (min-width: 521px) {}
