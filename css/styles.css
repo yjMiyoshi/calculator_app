@@ -14,7 +14,8 @@ body {
   margin: 0%;
   height: 100%;
   max-height: 100%;
-  font-family: "Roboto";
+  /* Helvetica Neue は提供されていないため除外 */
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 15px;
 }
 
