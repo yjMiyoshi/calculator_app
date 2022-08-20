@@ -66,9 +66,9 @@ table {
   background-color: red;
 }
 
-tr {}
-
-td {}
+td > div {
+  cursor: pointer;
+}
 
 .button {
   background-color: pink;
