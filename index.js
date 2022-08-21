@@ -13,28 +13,34 @@ const updatePreview = (clickedVal) => {
     return;
   }
 
-  // 最後にクリックされたボタンの値が数字の場合
+  // array に push するかの判定
+  // 配列が空かつ、特定の演算子が押された場合
+  if (clickedVals.length == 0) {
+    console.log("Heloo!!!!!!!!!");
+    if (clickedVal == "%"
+      || clickedVal == "÷"
+      || clickedVal == "×"
+      || clickedVal == "+"
+      ) {
+        clickedVals.push("0");
+        clickedVals.push(clickedVal);
+    } else {
+      clickedVals.push(clickedVal);
+    }
+  } else {
+    clickedVals.push(clickedVal);
+  }
+  
 
 
   // クリックされたボタンの値を array に詰める
-  clickedVals.push(clickedVal);
-  console.log(clickedVals);
-
-  // クリックされたのは数字？
-  if (isNum(clickedVal)) {
-
-  } else {
-    // clickedVals.length[-1]
-  }
-
-
-  console.log(isNum(clickedVal));
 
 
   // 演算子?
 
   // 数字の表示を value で更新
   preview = clickedVals.join('');
+  console.log(`preview: ${preview}`);
   document.getElementById("preview").value = preview;
 
   // 新しい入力がきた場合
@@ -75,8 +81,8 @@ const createFormula = (val) => {
     } else if (val[i] == "−") {
       formula += "-";
     } else if (val[i] == "%") {
-      // formula += "%";
-    }else {
+      formula += "/100";
+    } else {
       formula += val[i];
     }
   }
