@@ -19,8 +19,8 @@
       <div class="history">
 
       </div>
-      <div class="result">
-        <input type="text" class="hogehoge">
+      <div class="preview">
+        <input id="preview" type="text" value="0" class="hogehoge">
       </div>
     </div>
 
@@ -34,44 +34,44 @@
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>x!</div></td>
             <td class="button bg-color-1 tx-color-1"><div>(</div></td>
             <td class="button bg-color-1 tx-color-1"><div>)</div></td>
-            <td class="button bg-color-1 tx-color-1"><div>%</div></td>
-            <td class="button bg-color-1 tx-color-1"><div>AC</div></td>
+            <td class="button bg-color-1 tx-color-1"><div onclick=updatePreview(this.innerHTML)>%</div></td>
+            <td class="button bg-color-1 tx-color-1"><div onclick=updatePreview(this.innerHTML)>AC</div></td>
           </tr>
           <tr>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>Inv</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>sin</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>ln</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>7</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>8</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>9</div></td>
-            <td class="button bg-color-1 tx-color-1"><div>÷</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>7</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>8</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>9</div></td>
+            <td class="button bg-color-1 tx-color-1"><div onclick=updatePreview(this.innerHTML)>÷</div></td>
           </tr>
           <tr>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>π</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>cos</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>log</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>4</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>5</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>6</div></td>
-            <td class="button bg-color-1 tx-color-1"><div>×</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>4</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>5</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>6</div></td>
+            <td class="button bg-color-1 tx-color-1"><div onclick=updatePreview(this.innerHTML)>×</div></td>
           </tr>
           <tr>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>e</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>tan</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>√</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>3</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>2</div></td>
-            <td class="button bg-color-2 tx-color-1"><div onclick=get_number(this.innerHTML)>1</div></td>
-            <td class="button bg-color-1 tx-color-1"><div>−</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>3</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>2</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>1</div></td>
+            <td class="button bg-color-1 tx-color-1"><div onclick=updatePreview(this.innerHTML)>−</div></td>
           </tr>
           <tr>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>Ans</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>EXP</div></td>
             <td class="button bg-color-1 tx-color-1 sc-calc"><div>x<sup>y</sup></div></td>
-            <td class="button bg-color-2 tx-color-1"><div>0</div></td>
-            <td class="button bg-color-2 tx-color-1"><div>.</div></td>
-            <td class="button bg-color-3 tx-color-2"><div>=</div></td>
-            <td class="button bg-color-1 tx-color-1"><div>+</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>0</div></td>
+            <td class="button bg-color-2 tx-color-1"><div onclick=updatePreview(this.innerHTML)>.</div></td>
+            <td class="button bg-color-3 tx-color-2"><div onclick=equal(this.innerHTML)>=</div></td>
+            <td class="button bg-color-1 tx-color-1"><div onclick=updatePreview(this.innerHTML)>+</div></td>
           </tr>
         </table>
       </div>
