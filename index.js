@@ -15,7 +15,10 @@ const updatePreview = (clickedVal) => {
   }
 
   // 演算子が連続で押された場合、配列に追加せず終了
-  if (isOperator(clickedVals[clickedVals.length - 1]) && isOperator(clickedVal)) {
+  if (
+    isOperator(clickedVals[clickedVals.length - 1]) &&
+    isOperator(clickedVal)
+  ) {
     return;
   }
 
@@ -122,3 +125,6 @@ const isOperator = (operator) => {
 
   return result;
 }
+
+// オペランドにピリオドが複数入っていないかチェック
+
