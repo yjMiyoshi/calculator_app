@@ -41,8 +41,8 @@ const updatePreview = (clickedVal) => {
 
   // pleview の表示を更新
   preview = clickedVals.join('');
-  document.getElementById("preview").value = preview;
   equalState = false;
+  document.getElementById("preview").value = preview;
   document.getElementById("clear").textContent = 'CE';
 }
 
@@ -57,9 +57,9 @@ const equal = (fuga) => {
   let formula = ""
   formula = createFormula(clickedVals);
 
+  equalState = true;
   // 計算して、preview に反映する
   document.getElementById("preview").value = calculate(formula);
-  equalState = true;
   document.getElementById("clear").textContent = 'AC';
 }
 
@@ -95,6 +95,7 @@ const allClear = () => {
   clickedVals = [];
   // 0の初期表示をさせる
   document.getElementById("preview").value = '0';
+  document.getElementById("clear").textContent = 'CE';
 }
 
 // CE 押された場合、一文字削除

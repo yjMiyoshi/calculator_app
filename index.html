@@ -4,10 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- フォント -->
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-  <!-- スタイルシート -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <title>電卓</title>
 </head>
@@ -17,11 +15,13 @@
 
     <div class="panel">
       <div class="history">
-        <div>アイコン</div>
-        <div>直前の履歴</div>
+        <div>
+          <span class="material-icons-outlined icon-1">history</span>
+        </div>
+        <div class="prev-history">Ans = xxx</div>
       </div>
       <div class="preview">
-        <input readonly id="preview" type="text" value="0" class="hogehoge">
+        <input readonly id="preview" type="text" value="0" class="formula">
       </div>
     </div>
 

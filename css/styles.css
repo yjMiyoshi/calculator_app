@@ -50,9 +50,8 @@ h1 {
 
 .panel {
   padding: 10px 16px 0 10px;
-  /* border: 1px, solid, rgb(218, 220, 224); */
-  border: 1px, solid, green;
-  background-color: aqua;
+  border: 1px solid rgb(218, 220, 224);
+  border-radius: 8px;
   height: 80px;
 }
 
@@ -61,16 +60,26 @@ h1 {
   justify-content: space-between;
 }
 
+.prev-history {
+  margin-top: 3px;
+  font-size: 13px;
+  color: rgb(112, 117, 122);
+}
+
+.icon-1 {
+    color: rgb(112, 117, 122);
+}
+
 .preview {
   height: 32px;
   margin-top: 6px;
-  background-color: orange;
   display: flex;
 }
 
-.hogehoge {
+.formula {
   font-size: 32px;
   text-align: right;
+  color: rgb(77, 81, 86);
 }
 
 .calc-buttons {
@@ -83,7 +92,6 @@ table {
   border-spacing: 4px;
   table-layout: fixed;
   width: 100%;
-  background-color: red;
 }
 
 td > div {
@@ -92,7 +100,6 @@ td > div {
 }
 
 .button {
-  background-color: pink;
   height: 36px;
   text-align: center;
   border-radius: 4px;
@@ -131,7 +138,7 @@ td > div {
 /* Google 検索時の仕様に合わせ break point 指定 */
 @media (min-width: 460px) {
   table {
-    background-color: green;
+    /* background-color: green; */
   }
 
   .sc-calc {
