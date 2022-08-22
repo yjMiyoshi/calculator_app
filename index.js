@@ -4,17 +4,12 @@ let equalState = false;
 
 
 const updatePreview = (clickedVal) => {
-  // ac と ce の判定
-  if (clickedVal === 'AC') {
-    console.log(1);
+  // AC と CE の判定
+  if (clickedVal === 'AC' || clickedVal == 'CE') {
     if (equalState) {
-      console.log(2);
-      // 全削除
-      ac();
+      allClear(); // 全削除
     } else {
-      console.log(3);
-      // 一文字削除
-      ce(clickedVals);
+      clearEntry(); // 一文字削除
     }
     return;
   }
@@ -43,9 +38,9 @@ const updatePreview = (clickedVal) => {
 
   // pleview の表示を更新
   preview = clickedVals.join('');
-  console.log(`preview: ${preview}`);
   document.getElementById("preview").value = preview;
   equalState = false;
+  document.getElementById("clear").textContent = 'CE';
 }
 
 // 数字かどうかを判定する
@@ -55,18 +50,14 @@ const isNum = (arg) => {
 
 // イコール押された場合
 const equal = (fuga) => {
-  // 区切りを作成した配列を作成する（mapか?）
-  // TODO 2桁 3桁 演算子等
-
-
   // 配列から式を作る
   let formula = ""
   formula = createFormula(clickedVals);
-  console.log(`formula: ${formula}`);
 
   // 計算して、preview に反映する
   document.getElementById("preview").value = calculate(formula);
   equalState = true;
+  document.getElementById("clear").textContent = 'AC';
 }
 
 // 配列から式を作る
@@ -96,13 +87,25 @@ const calculate = (formula) => {
   return new Function("return " + formula + ";")();
 }
 
-// CE押された場合 1桁削除
-const ce = (array) => {
-  if (array.length > 0) {
-    array.pop();
+// AC 押された場合、全削除
+const allClear = () => {
+  clickedVals = [];
+  // 0の初期表示をさせる
+  document.getElementById("preview").value = '0';
+}
+
+// CE 押された場合、一文字削除
+const clearEntry = () => {
+  if (clickedVals.length > 0) {
+    clickedVals.pop();
   }
-  preview = array.join('');
-  document.getElementById("preview").value = preview;
+  preview = clickedVals.join('');
+  // 最後の要素の場合、value を0に書き換える
+  if (clickedVals.length == 0) {
+    document.getElementById("preview").value = '0';
+  } else {
+    document.getElementById("preview").value = preview;
+  }
 }
 
 // 押されたボタンが記号か確認
@@ -119,11 +122,3 @@ const isOperator = (operator) => {
 
   return result;
 }
-
-// AC押された場合、全削除
-const ac = () => {
-  clickedVals = [];
-  // 
-  document.getElementById("preview").value = '0';
-}
-
