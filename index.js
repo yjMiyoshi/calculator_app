@@ -1,51 +1,51 @@
 let preview = "";
-
 let clickedVals = [];
+let equalState = false;
+
 
 const updatePreview = (clickedVal) => {
-  // CE押された場合 1桁削除
+  // ac と ce の判定
   if (clickedVal === 'AC') {
-    if (clickedVals.length > 0) {
-      clickedVals.pop();
+    console.log(1);
+    if (equalState) {
+      console.log(2);
+      // 全削除
+      ac();
+    } else {
+      console.log(3);
+      // 一文字削除
+      ce(clickedVals);
     }
-    preview = clickedVals.join('');
-    document.getElementById("preview").value = preview;
+    return;
+  }
+
+  // 演算子が連続で押された場合、配列に追加せず終了
+  if (isOperator(clickedVals[clickedVals.length - 1]) && isOperator(clickedVal)) {
     return;
   }
 
   // array に push するかの判定
   // 配列が空かつ、特定の演算子が押された場合
   if (clickedVals.length == 0) {
-    console.log("Heloo!!!!!!!!!");
     if (clickedVal == "%"
       || clickedVal == "÷"
       || clickedVal == "×"
       || clickedVal == "+"
-      ) {
-        clickedVals.push("0");
-        clickedVals.push(clickedVal);
+    ) {
+      clickedVals.push("0");
+      clickedVals.push(clickedVal);
     } else {
       clickedVals.push(clickedVal);
     }
   } else {
     clickedVals.push(clickedVal);
   }
-  
 
-
-  // クリックされたボタンの値を array に詰める
-
-
-  // 演算子?
-
-  // 数字の表示を value で更新
+  // pleview の表示を更新
   preview = clickedVals.join('');
   console.log(`preview: ${preview}`);
   document.getElementById("preview").value = preview;
-
-  // 新しい入力がきた場合
-
-  // 
+  equalState = false;
 }
 
 // 数字かどうかを判定する
@@ -66,7 +66,7 @@ const equal = (fuga) => {
 
   // 計算して、preview に反映する
   document.getElementById("preview").value = calculate(formula);
-
+  equalState = true;
 }
 
 // 配列から式を作る
@@ -97,10 +97,33 @@ const calculate = (formula) => {
 }
 
 // CE押された場合 1桁削除
-const ce = () => {
-  if (clickedVals.length > 0) {
-    clickedVals.pop();
+const ce = (array) => {
+  if (array.length > 0) {
+    array.pop();
   }
+  preview = array.join('');
+  document.getElementById("preview").value = preview;
+}
+
+// 押されたボタンが記号か確認
+const isOperator = (operator) => {
+  let result = false;
+
+  if (operator == "÷"
+    || operator == "×"
+    || operator == "+"
+    || operator == "−"
+  ) {
+    result = true;
+  }
+
+  return result;
 }
 
 // AC押された場合、全削除
+const ac = () => {
+  clickedVals = [];
+  // 
+  document.getElementById("preview").value = '0';
+}
+
