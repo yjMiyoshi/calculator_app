@@ -17,20 +17,18 @@
       <div class="history">
         <div class="history-panel">
           <span class="material-icons-outlined icon-1" onclick=openModal()>history</span>
-          <div id="modal-wrapper">
+          <div id="modal">
             <div class="modal-position">
               <span class="material-icons-outlined icon-2" onclick=closeModal()>history</span>
-              <div class="modal">計算した内容や結果がここに表示され、再度使用できます</div>
-              <table id="history-table">
-                <tbody>
-                  <!-- tr, td は JS 側で生成-->
-                </tbody>
-              </table>
+              <div class="modal-text">計算した内容や結果がここに表示され、再度使用できます</div>
+              <div id="history-table">
+                <!-- td は JS 側で生成 tbody tr は無し -->
+              </div>
             </div>
           </div>
         </div>
         
-        <div class="prev-history">Ans = 0</div>
+        <div id="prev-history">Ans = 0</div>
       </div>
       <div class="preview">
         <input readonly id="preview" type="text" value="0" class="expression">

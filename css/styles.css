@@ -63,6 +63,10 @@ h1 {
   justify-content: space-between;
 }
 
+.table-1+.table-1 {
+  margin-top: 16px;
+}
+
 .his-1 {
   height: 32px;
   padding: 6px 12px;
@@ -77,11 +81,11 @@ h1 {
   height: 30px;
   padding: 1px;
   font-size: 20px;
-  color: rgb(26, 115, 232);
+  color: rgb(112, 117, 122);
   text-align: center;
 }
 
-.prev-history {
+#prev-history {
   margin-top: 3px;
   font-size: 13px;
   color: rgb(112, 117, 122);
@@ -101,7 +105,7 @@ h1 {
   font-size: 22px;
 }
 
-#modal-wrapper {
+#modal {
   display: none;
   position: absolute;
   top: 11px;
@@ -112,8 +116,7 @@ h1 {
   max-height: 999999px;
   z-index: 3;
   text-align: center;
-  /* background-color: rgb(255, 255, 255); */
-  background-color: orange;
+  background-color: rgb(255, 255, 255);
   color: rgb(77, 81, 86);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.28) 0 1px 4px 0;
@@ -205,8 +208,8 @@ td>div {
 /* 関数電卓表示 ----------------------------------------------- */
 /* Google 検索時の仕様に合わせ break point 指定 */
 @media (min-width: 460px) {
-  table {
-    /* background-color: green; */
+  #modal {
+    width: 448px;
   }
 
   .sc-calc {

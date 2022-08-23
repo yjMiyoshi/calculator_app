@@ -1,18 +1,7 @@
 let preview = "";
 let clickedVals = [];
 let equalState = false;
-
-// TODO 後で空にする
-let histories = [
-  {
-    expression: '3×3',
-    answer: '9'
-  },
-  {
-    expression: '40×5',
-    answer: '200'
-  }
-]
+let histories = [];
 
 const updatePreview = (clickedVal) => {
   // AC と CE の判定
@@ -63,7 +52,7 @@ const isNum = (arg) => {
 }
 
 // イコール押された場合
-const equal = (fuga) => {
+const equal = (arg) => {
   // 配列から式を作る
   let expression = ""
   expression = createExpression(clickedVals);
@@ -72,6 +61,12 @@ const equal = (fuga) => {
   // 計算して、preview に反映する
   document.getElementById("preview").value = calculate(expression);
   document.getElementById("clear").textContent = 'AC';
+
+  // 計算履歴の配列に追加
+  histories.push({ expression: preview, answer: calculate(expression) });
+  let lastHis = histories[histories.length - 1];
+  document.getElementById("prev-history").textContent = lastHis.expression + " = ";
+  createHistoryTable();
 }
 
 // 配列から式を作る
@@ -140,16 +135,16 @@ const isOperator = (operator) => {
 
 // 履歴アイコンクリックでモーダル表示
 const openModal = () => {
-  document.getElementById('modal-wrapper').style.display = 'block';
+  document.getElementById('modal').style.display = 'block';
 }
 
 // 履歴アイコンクリックでモーダル非表示
 const closeModal = () => {
-  document.getElementById('modal-wrapper').style.display = 'none';
+  document.getElementById('modal').style.display = 'none';
 }
 
 // モーダル外クリックでモーダル非表示
-let modal = document.getElementById('modal-wrapper');
+let modal = document.getElementById('modal');
 addEventListener('click', outsideClose);
 function outsideClose(e) {
   if (e.target == document.getElementById('main')) {
@@ -160,26 +155,33 @@ function outsideClose(e) {
 // TODO オペランドにピリオドが複数入っていないかチェック
 
 // 配列からテーブルを作成する
-let tableEle = document.getElementById('history-table');
+const createHistoryTable = () => {
 
-for (let i = 0; i < histories.length; i++) {
-  let tr = document.createElement('tr');
+  // 初期化
+  document.getElementById('history-table').innerHTML = '';
+  let tableEle = document.getElementById('history-table');
 
-  for (let j = 0; j < 3; j++) {
+  for (let i = 0; i < histories.length; i++) {
+    let table = document.createElement('table');
+    table.classList.add('table-1');
+
     const td1 = document.createElement('td');
-    td1.classList.add('his-1')
     const td2 = document.createElement('td');
-    td2.classList.add('his-2')
     const td3 = document.createElement('td');
-    td3.classList.add('his-1')
+    // class 付与
+    td1.classList.add('his-1');
+    td2.classList.add('his-2');
+    td3.classList.add('his-1');
 
     td1.innerHTML = histories[i].expression;
-    tr.appendChild(td1);
     td2.innerHTML = '=';
-    tr.appendChild(td2);
     td3.innerHTML = histories[i].answer;
-    tr.appendChild(td3);
+
+    table.appendChild(td1);
+    table.appendChild(td2);
+    table.appendChild(td3);
+
+    tableEle.appendChild(table);
   }
-  tableEle.appendChild(tr);
 }
 
