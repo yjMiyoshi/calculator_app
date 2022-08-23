@@ -3,6 +3,8 @@
 * {
   /* padding と border を幅と高さに含める */
   box-sizing: border-box;
+  /* カーソル設定 */
+  cursor: default;
 }
 
 input {
@@ -88,16 +90,15 @@ h1 {
 .icon-1 {
   color: rgb(112, 117, 122);
   font-size: 22px;
-  cursor: pointer;
 }
 
 .icon-2 {
   position: absolute;
   top: 0;
   left: 0;
+  padding: 16px;
   color: rgb(26, 115, 232);
   font-size: 22px;
-  padding: 16px;
 }
 
 #modal-wrapper {

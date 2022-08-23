@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="main">
+  <div id="main" class="main">
 
     <div class="panel">
       <div class="history">
@@ -19,7 +19,7 @@
           <span class="material-icons-outlined icon-1" onclick=openModal()>history</span>
           <div id="modal-wrapper">
             <div class="modal-position">
-              <span class="material-icons-outlined icon-2">history</span>
+              <span class="material-icons-outlined icon-2" onclick=closeModal()>history</span>
               <div class="modal">計算した内容や結果がここに表示され、再度使用できます</div>
               <table id="history-table">
                 <tbody>
@@ -30,7 +30,7 @@
           </div>
         </div>
         
-        <div class="prev-history">Ans = xxx</div>
+        <div class="prev-history">Ans = 0</div>
       </div>
       <div class="preview">
         <input readonly id="preview" type="text" value="0" class="expression">

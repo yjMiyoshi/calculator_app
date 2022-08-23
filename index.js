@@ -1,6 +1,7 @@
 let preview = "";
 let clickedVals = [];
 let equalState = false;
+
 // TODO 後で空にする
 let histories = [
   {
@@ -140,6 +141,20 @@ const isOperator = (operator) => {
 // 履歴アイコンクリックでモーダル表示
 const openModal = () => {
   document.getElementById('modal-wrapper').style.display = 'block';
+}
+
+// 履歴アイコンクリックでモーダル非表示
+const closeModal = () => {
+  document.getElementById('modal-wrapper').style.display = 'none';
+}
+
+// モーダル外クリックでモーダル非表示
+let modal = document.getElementById('modal-wrapper');
+addEventListener('click', outsideClose);
+function outsideClose(e) {
+  if (e.target == document.getElementById('main')) {
+    modal.style.display = 'none';
+  }
 }
 
 // TODO オペランドにピリオドが複数入っていないかチェック
