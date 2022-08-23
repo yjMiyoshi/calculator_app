@@ -6,6 +6,10 @@ let histories = [
   {
     expression: '3×3',
     answer: '9'
+  },
+  {
+    expression: '40×5',
+    answer: '200'
   }
 ]
 
@@ -143,8 +147,11 @@ for (let i = 0; i < histories.length; i++) {
 
   for (let j = 0; j < 3; j++) {
     const td1 = document.createElement('td');
+    td1.classList.add('his-1')
     const td2 = document.createElement('td');
+    td2.classList.add('his-2')
     const td3 = document.createElement('td');
+    td3.classList.add('his-1')
 
     td1.innerHTML = histories[i].expression;
     tr.appendChild(td1);

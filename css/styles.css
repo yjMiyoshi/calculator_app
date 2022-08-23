@@ -61,6 +61,24 @@ h1 {
   justify-content: space-between;
 }
 
+.his-1 {
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: rgb(26, 115, 232);
+  border: 1px solid rgb(218, 220, 224);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.his-2 {
+  height: 30px;
+  padding: 1px;
+  font-size: 20px;
+  color: rgb(26, 115, 232);
+  text-align: center;
+}
+
 .prev-history {
   margin-top: 3px;
   font-size: 13px;
