@@ -1,7 +1,13 @@
 let preview = "";
 let clickedVals = [];
 let equalState = false;
-
+// TODO 後で空にする
+let histories = [
+  {
+    expression: '3×3',
+    answer: '9'
+  }
+]
 
 const updatePreview = (clickedVal) => {
   // AC と CE の判定
@@ -54,40 +60,40 @@ const isNum = (arg) => {
 // イコール押された場合
 const equal = (fuga) => {
   // 配列から式を作る
-  let formula = ""
-  formula = createFormula(clickedVals);
+  let expression = ""
+  expression = createExpression(clickedVals);
 
   equalState = true;
   // 計算して、preview に反映する
-  document.getElementById("preview").value = calculate(formula);
+  document.getElementById("preview").value = calculate(expression);
   document.getElementById("clear").textContent = 'AC';
 }
 
 // 配列から式を作る
-const createFormula = (val) => {
-  let formula = "";
+const createExpression = (val) => {
+  let expression = "";
 
   for (let i = 0; i < val.length; i++) {
     if (val[i] == "÷") {
-      formula += "/";
+      expression += "/";
     } else if (val[i] == "×") {
-      formula += "*";
+      expression += "*";
     } else if (val[i] == "−") {
-      formula += "-";
+      expression += "-";
     } else if (val[i] == "%") {
-      formula += "/100";
+      expression += "/100";
     } else {
-      formula += val[i];
+      expression += val[i];
     }
   }
 
-  return formula;
+  return expression;
 }
 
 // 計算を実行する
-const calculate = (formula) => {
+const calculate = (expression) => {
   // 文字列を関数に変換して返す
-  return new Function("return " + formula + ";")();
+  return new Function("return " + expression + ";")();
 }
 
 // AC 押された場合、全削除
@@ -127,5 +133,25 @@ const isOperator = (operator) => {
   return result;
 }
 
-// オペランドにピリオドが複数入っていないかチェック
+// TODO オペランドにピリオドが複数入っていないかチェック
 
+// 配列からテーブルを作成する
+let tableEle = document.getElementById('history-table');
+
+for (let i = 0; i < histories.length; i++) {
+  let tr = document.createElement('tr');
+
+  for (let j = 0; j < 3; j++) {
+    const td1 = document.createElement('td');
+    const td2 = document.createElement('td');
+    const td3 = document.createElement('td');
+
+    td1.innerHTML = histories[i].expression;
+    tr.appendChild(td1);
+    td2.innerHTML = '=';
+    tr.appendChild(td2);
+    td3.innerHTML = histories[i].answer;
+    tr.appendChild(td3);
+  }
+  tableEle.appendChild(tr);
+}

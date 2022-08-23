@@ -15,13 +15,23 @@
 
     <div class="panel">
       <div class="history">
-        <div>
+        <div class="history-panel">
           <span class="material-icons-outlined icon-1">history</span>
+          <div class="modal-wrapper">
+            <div class="modal-position">
+              <span class="material-icons-outlined icon-2">history</span>
+              <div class="modal">計算した内容や結果がここに表示され、再度使用できます</div>
+              <table id="history-table">
+
+              </table>
+            </div>
+          </div>
         </div>
+        
         <div class="prev-history">Ans = xxx</div>
       </div>
       <div class="preview">
-        <input readonly id="preview" type="text" value="0" class="formula">
+        <input readonly id="preview" type="text" value="0" class="expression">
       </div>
     </div>
 
