@@ -5,7 +5,7 @@ let histories = [];
 
 const updatePreview = (clickedVal) => {
   // AC と CE の判定
-  if (clickedVal === 'AC' || clickedVal == 'CE') {
+  if (clickedVal === "AC" || clickedVal == "CE") {
     if (equalState) {
       allClear(); // 全削除
     } else {
@@ -20,6 +20,13 @@ const updatePreview = (clickedVal) => {
     isOperator(clickedVal)
   ) {
     return;
+  }
+
+  // イコールクリック直後のボタンクリック操作時の処理
+  if (equalState) {
+    clickedVals = [];
+    let lastHis = histories[histories.length - 1];
+    document.getElementById("prev-history").textContent = "Ans = " +lastHis.answer;
   }
 
   // array に push するかの判定
@@ -40,10 +47,10 @@ const updatePreview = (clickedVal) => {
   }
 
   // pleview の表示を更新
-  preview = clickedVals.join('');
+  preview = clickedVals.join("");
   equalState = false;
   document.getElementById("preview").value = preview;
-  document.getElementById("clear").textContent = 'CE';
+  document.getElementById("clear").textContent = "CE";
 }
 
 // 数字かどうかを判定する
@@ -60,13 +67,18 @@ const equal = (arg) => {
   equalState = true;
   // 計算して、preview に反映する
   document.getElementById("preview").value = calculate(expression);
-  document.getElementById("clear").textContent = 'AC';
+  document.getElementById("clear").textContent = "AC";
 
   // 計算履歴の配列に追加
   histories.push({ expression: preview, answer: calculate(expression) });
   let lastHis = histories[histories.length - 1];
   document.getElementById("prev-history").textContent = lastHis.expression + " = ";
   createHistoryTable();
+  // モーダル初期表示消す
+  if (histories.length != 0) {
+    document.getElementById("modal-text").style.display = "none";
+    document.getElementById("history-table").style.display = "block";
+  }
 }
 
 // 配列から式を作る
@@ -100,8 +112,8 @@ const calculate = (expression) => {
 const allClear = () => {
   clickedVals = [];
   // 0の初期表示をさせる
-  document.getElementById("preview").value = '0';
-  document.getElementById("clear").textContent = 'CE';
+  document.getElementById("preview").value = "0";
+  document.getElementById("clear").textContent = "CE";
 }
 
 // CE 押された場合、一文字削除
@@ -109,10 +121,10 @@ const clearEntry = () => {
   if (clickedVals.length > 0) {
     clickedVals.pop();
   }
-  preview = clickedVals.join('');
+  preview = clickedVals.join("");
   // 最後の要素の場合、value を0に書き換える
   if (clickedVals.length == 0) {
-    document.getElementById("preview").value = '0';
+    document.getElementById("preview").value = "0";
   } else {
     document.getElementById("preview").value = preview;
   }
@@ -134,23 +146,27 @@ const isOperator = (operator) => {
 }
 
 // 履歴アイコンクリックでモーダル表示
-const openModal = () => {
-  document.getElementById('modal').style.display = 'block';
+const openModal = (e) => {
+  document.getElementById("modal").style.display = "block";
+  // 処理伝播を止める
+  e.stopPropagation();
 }
 
 // 履歴アイコンクリックでモーダル非表示
-const closeModal = () => {
-  document.getElementById('modal').style.display = 'none';
+const closeModal = (e) => {
+  document.getElementById("modal").style.display = "none";
+  e.stopPropagation();
 }
 
 // モーダル外クリックでモーダル非表示
-let modal = document.getElementById('modal');
-addEventListener('click', outsideClose);
-function outsideClose(e) {
-  if (e.target == document.getElementById('main')) {
-    modal.style.display = 'none';
+let modal = document.getElementById("modal");
+
+const outsideClose = (e) => {
+  if (e.target != document.getElementById("modal")) {
+    modal.style.display = "none";
   }
 }
+addEventListener("click", outsideClose);
 
 // TODO オペランドにピリオドが複数入っていないかチェック
 
@@ -158,23 +174,23 @@ function outsideClose(e) {
 const createHistoryTable = () => {
 
   // 初期化
-  document.getElementById('history-table').innerHTML = '';
-  let tableEle = document.getElementById('history-table');
+  document.getElementById("history-table").innerHTML = "";
+  let tableEle = document.getElementById("history-table");
 
   for (let i = 0; i < histories.length; i++) {
-    let table = document.createElement('table');
-    table.classList.add('table-1');
+    let table = document.createElement("table");
+    table.classList.add("table-1");
 
-    const td1 = document.createElement('td');
-    const td2 = document.createElement('td');
-    const td3 = document.createElement('td');
+    const td1 = document.createElement("td");
+    const td2 = document.createElement("td");
+    const td3 = document.createElement("td");
     // class 付与
-    td1.classList.add('his-1');
-    td2.classList.add('his-2');
-    td3.classList.add('his-1');
+    td1.classList.add("his-1");
+    td2.classList.add("his-2");
+    td3.classList.add("his-1");
 
     td1.innerHTML = histories[i].expression;
-    td2.innerHTML = '=';
+    td2.innerHTML = "=";
     td3.innerHTML = histories[i].answer;
 
     table.appendChild(td1);
@@ -184,4 +200,3 @@ const createHistoryTable = () => {
     tableEle.appendChild(table);
   }
 }
-
