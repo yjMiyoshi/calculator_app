@@ -129,6 +129,19 @@ td > div {
   color: rgb(112, 117, 122);
 }
 
+.equal, .period {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#clear {
+  font-size: 14px;
+}
+
+.operator {
+  font-size: 20px;
+}
+
 /* 関数電卓 scientific calculator */
 .sc-calc {
   display: none;
