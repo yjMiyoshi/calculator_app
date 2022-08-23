@@ -137,6 +137,11 @@ const isOperator = (operator) => {
   return result;
 }
 
+// 履歴アイコンクリックでモーダル表示
+const openModal = () => {
+  document.getElementById('modal-wrapper').style.display = 'block';
+}
+
 // TODO オペランドにピリオドが複数入っていないかチェック
 
 // 配列からテーブルを作成する
@@ -162,3 +167,4 @@ for (let i = 0; i < histories.length; i++) {
   }
   tableEle.appendChild(tr);
 }
+

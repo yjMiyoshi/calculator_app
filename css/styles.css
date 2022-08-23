@@ -88,6 +88,7 @@ h1 {
 .icon-1 {
   color: rgb(112, 117, 122);
   font-size: 22px;
+  cursor: pointer;
 }
 
 .icon-2 {
@@ -99,7 +100,8 @@ h1 {
   padding: 16px;
 }
 
-.modal-wrapper {
+#modal-wrapper {
+  display: none;
   position: absolute;
   top: 11px;
   left: -1px;
