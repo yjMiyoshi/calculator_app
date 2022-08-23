@@ -89,20 +89,20 @@ h1 {
 table {
   /* セル間の隙間を指定 */
   border-collapse: separate;
-  border-spacing: 4px;
   table-layout: fixed;
   width: 100%;
 }
 
 td > div {
+  margin: 4px;
   cursor: pointer;
   line-height: 36px;
+  border-radius: 4px;
 }
 
 .button {
   height: 36px;
   text-align: center;
-  border-radius: 4px;
 }
 
 .bg-color-1 {
