@@ -100,45 +100,42 @@ td > div {
   border-radius: 4px;
 }
 
-.button {
+.calc-buttons td {
   height: 36px;
   text-align: center;
+
 }
 
-.bg-color-1 {
+.color1 {
+  color: rgb(32, 33, 36);
   background-color: rgb(218, 220, 224);
 }
 
-.bg-color-2 {
+.color2 {
+  color: rgb(32, 33, 36);
   background-color: rgb(241, 243, 244);
 }
 
-.bg-color-3 {
-  background-color: rgb(66, 133, 244);
-}
-
-.tx-color-1 {
-  color: rgb(32, 33, 36);
-}
-
-.tx-color-2 {
-  color: rgb(255, 255, 255);
-}
-
-.tx-color-3 {
+.color3 {
+  background-color: rgb(218, 220, 224);
   color: rgb(112, 117, 122);
 }
 
-.equal, .period {
+.color4 {
+  background-color: rgb(66, 133, 244);
+  color: rgb(255, 255, 255);
+}
+
+.font1 {
   font-size: 20px;
   font-weight: 700;
 }
 
-#clear {
+.font2 {
   font-size: 14px;
 }
 
-.operator {
+.font3 {
   font-size: 20px;
 }
 
