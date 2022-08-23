@@ -26,7 +26,7 @@ const updatePreview = (clickedVal) => {
   if (equalState) {
     clickedVals = [];
     let lastHis = histories[histories.length - 1];
-    document.getElementById("prev-history").textContent = "Ans = " +lastHis.answer;
+    document.getElementById("prev-history").textContent = "Ans = " + lastHis.answer;
   }
 
   // array に push するかの判定
@@ -70,7 +70,7 @@ const equal = (arg) => {
   document.getElementById("clear").textContent = "AC";
 
   // 計算履歴の配列に追加
-  histories.push({ expression: preview, answer: calculate(expression) });
+  histories.push({ expression: preview, answer: calculate(expression), clickedVals });
   let lastHis = histories[histories.length - 1];
   document.getElementById("prev-history").textContent = lastHis.expression + " = ";
   createHistoryTable();
@@ -170,6 +170,27 @@ addEventListener("click", outsideClose);
 
 // TODO オペランドにピリオドが複数入っていないかチェック
 
+
+// 履歴の式と計算結果クリック時の挙動
+const historyClick = (e) => {
+  equalState = false;
+  const element = e.target;
+  const historyIndex = element.dataset.historyIndex;
+  const historyType = element.dataset.historyType;
+  const history = histories[historyIndex];
+
+  if (historyType == "expression") {
+    const expression = history.expression;
+    document.getElementById("preview").value = expression;
+    clickedVals = history.clickedVals;
+  } else {
+    const answer = history.answer;
+    document.getElementById("preview").value = answer;
+    clickedVals = [answer];
+  }
+  closeModal(e);
+}
+
 // 配列からテーブルを作成する
 const createHistoryTable = () => {
 
@@ -185,9 +206,18 @@ const createHistoryTable = () => {
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
     // class 付与
-    td1.classList.add("his-1");
-    td2.classList.add("his-2");
-    td3.classList.add("his-1");
+    td1.classList.add("td-1");
+    td2.classList.add("td-2");
+    td3.classList.add("td-1");
+
+    // 履歴クリック用
+    td1.dataset.historyIndex = i;
+    td2.dataset.historyIndex = i;
+    td3.dataset.historyIndex = i;
+
+    td1.dataset.historyType = "expression";
+    td2.dataset.historyType = "equal";
+    td3.dataset.historyType = "answer";
 
     td1.innerHTML = histories[i].expression;
     td2.innerHTML = "=";
@@ -198,5 +228,11 @@ const createHistoryTable = () => {
     table.appendChild(td3);
 
     tableEle.appendChild(table);
+
+    td1.addEventListener('click', historyClick);
+    td2.addEventListener('click', historyClick);
+    td3.addEventListener('click', historyClick);
   }
 }
+
+
