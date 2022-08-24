@@ -17,43 +17,51 @@ const updatePreview = (clickedVal) => {
 
   // イコールクリック直後のボタンクリック操作時の処理
   if (equalState) {
-    clickedVals = [];
-    let lastHis = histories[histories.length - 1];
+    if (isNum(clickedVal) || clickedVal == ".") {
+      clickedVals = [];
+    } else {
+      clickedVals = [histories[histories.length - 1].answer];
+    }
+    const lastHis = histories[histories.length - 1];
     document.getElementById("prev-history").textContent = "Ans = " + lastHis.answer;
   }
 
-  // array に push するかの判定
-  // 配列が空かつ、特定の演算子が押された場合
-  if (clickedVals.length == 0) {
-    if (clickedVal == "%"
-      || clickedVal == "÷"
-      || clickedVal == "×"
-      || clickedVal == "+"
-    ) {
-      clickedVals.push("0");
-      clickedVals.push(clickedVal);
-    } else {
-      clickedVals.push(clickedVal);
-    }
-  } else {
-    // 演算子が連続で押された場合、配列に追加せず終了
-    if (isOperator(clickedVals[clickedVals.length - 1]) && isOperator(clickedVal)) {
-      // 別の演算子が押された場合、配列の最後を削除し追加
-      if (clickedVals[clickedVals.length - 1] != clickedVal) {
-        clickedVals.pop();
-        clickedVals.push(clickedVal);
-        // - の場合を考慮
-      }
-    } else {
-      clickedVals.push(clickedVal);
-    }
-  }
+  appendClickedVals(clickedVal);
 
   // pleview の表示を更新
   preview = clickedVals.join("");
   equalState = false;
   document.getElementById("preview").value = preview;
   document.getElementById("clear").textContent = "CE";
+}
+
+// array に push するかの判定
+// 配列が空かつ、特定の演算子が押された場合
+const appendClickedVals = (val) => {
+  if (clickedVals.length == 0) {
+    if (val == "%"
+      || val == "÷"
+      || val == "×"
+      || val == "+"
+    ) {
+      clickedVals.push("0");
+      clickedVals.push(val);
+    } else {
+      clickedVals.push(val);
+    }
+  } else {
+    // 演算子が連続で押された場合、配列に追加せず終了
+    if (isOperator(clickedVals[clickedVals.length - 1]) && isOperator(val)) {
+      // 別の演算子が押された場合、配列の最後を削除し追加
+      if (clickedVals[clickedVals.length - 1] != val) {
+        clickedVals.pop();
+        clickedVals.push(val);
+        // - の場合を考慮
+      }
+    } else {
+      clickedVals.push(val);
+    }
+  }
 }
 
 // 数字かどうかを判定する
@@ -71,17 +79,18 @@ const equal = (arg) => {
   // 配列から式を作る
   let expression = "";
   expression = createExpression(clickedVals);
-
   equalState = true;
+
   // 計算して、preview に反映する
   document.getElementById("preview").value = calculate(expression);
   document.getElementById("clear").textContent = "AC";
 
   // 計算履歴の配列に追加
   histories.push({ expression: preview, answer: calculate(expression), clickedVals });
-  let lastHis = histories[histories.length - 1];
+  const lastHis = histories[histories.length - 1];
   document.getElementById("prev-history").textContent = lastHis.expression + " = ";
   createHistoryTable();
+
   // モーダル初期表示消す
   if (histories.length != 0) {
     document.getElementById("modal-text").style.display = "none";
