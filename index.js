@@ -15,14 +15,6 @@ const updatePreview = (clickedVal) => {
     return;
   }
 
-  // 演算子が連続で押された場合、配列に追加せず終了
-  if (
-    isOperator(clickedVals[clickedVals.length - 1]) &&
-    isOperator(clickedVal)
-  ) {
-    return;
-  }
-
   // イコールクリック直後のボタンクリック操作時の処理
   if (equalState) {
     clickedVals = [];
@@ -44,7 +36,17 @@ const updatePreview = (clickedVal) => {
       clickedVals.push(clickedVal);
     }
   } else {
-    clickedVals.push(clickedVal);
+    // 演算子が連続で押された場合、配列に追加せず終了
+    if (isOperator(clickedVals[clickedVals.length - 1]) && isOperator(clickedVal)) {
+      // 別の演算子が押された場合、配列の最後を削除し追加
+      if (clickedVals[clickedVals.length - 1] != clickedVal) {
+        clickedVals.pop();
+        clickedVals.push(clickedVal);
+        // - の場合を考慮
+      }
+    } else {
+      clickedVals.push(clickedVal);
+    }
   }
 
   // pleview の表示を更新
