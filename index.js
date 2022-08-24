@@ -5,13 +5,9 @@ let equalState = false;
 let histories = [];
 
 const updatePreview = (clickedVal) => {
-  // AC と CE の判定
+  // clear 処理
   if (clickedVal === "AC" || clickedVal == "CE") {
-    if (equalState) {
-      allClear(); // 全削除
-    } else {
-      clearEntry(); // 一文字削除
-    }
+    clearPreview(clickedVal);
     return;
   }
 
@@ -75,6 +71,15 @@ const equal = (arg) => {
   if (clickedVals.length == 0) {
     return;
   }
+  // 最後に入力されたものが演算子の場合、終了
+  const val = clickedVals[clickedVals.length - 1]
+  if (val == "÷"
+    || val == "×"
+    || val == "−"
+    || val == "+"
+  ) {
+    return;
+  }
 
   // 配列から式を作る
   let expression = "";
@@ -123,6 +128,15 @@ const createExpression = (val) => {
 const calculate = (expression) => {
   // 文字列を関数に変換して返す
   return new Function("return " + expression + ";")();
+}
+
+const clearPreview = (str) => {
+  if (str === "AC") {
+    allClear(); // 全削除
+  }
+  if (str === "CE") {
+    clearEntry(); // 一文字削除
+  }
 }
 
 // AC 押された場合、全削除
