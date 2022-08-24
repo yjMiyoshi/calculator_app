@@ -1,5 +1,6 @@
 let preview = "";
 let clickedVals = [];
+// TODO equalState を消したい
 let equalState = false;
 let histories = [];
 
@@ -60,8 +61,13 @@ const isNum = (arg) => {
 
 // イコール押された場合
 const equal = (arg) => {
+  // イコールが最初に押されるのを防ぐ
+  if (clickedVals.length == 0) {
+    return;
+  }
+
   // 配列から式を作る
-  let expression = ""
+  let expression = "";
   expression = createExpression(clickedVals);
 
   equalState = true;
