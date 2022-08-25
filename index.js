@@ -42,7 +42,7 @@ const appendClickedVals = (val) => {
       || val == "+"
     ) {
       clickedVals.push("0");
-      clickedVals.push(val);
+      appendArray(val);
     } else {
       clickedVals.push(val);
     }
@@ -52,21 +52,41 @@ const appendClickedVals = (val) => {
       // 別の演算子が押された場合、配列の最後を削除し追加
       if (lastEle != val) {
         clickedVals.pop();
-        clickedVals.push(val);
+        appendArray(val);
         // - の場合を考慮
       }
     } else if (lastEle === "%" && isNum) {
       clickedVals.push("×");
       clickedVals.push(val);
     } else {
-      clickedVals.push(val);
+      appendArray(val);
     }
+  }
+  console.log('clickedVals');
+  console.log(clickedVals);
+}
+
+const appendArray = (val) => {
+  console.log('clickedVals');
+  console.log(clickedVals);
+  if (val == "%"
+    || val == "÷"
+    || val == "×"
+    || val == "−"
+    || val == "+"
+  ) {
+    // 前後にスペース配置
+    // TODO スペースいれるとerrorなので解消する
+    // val = " " + val + " ";
+    clickedVals.push(val);
+  } else {
+    clickedVals.push(val)
   }
 }
 
 // 数字かどうかを判定する
-const isNum = (arg) => {
-  return !isNaN(arg);
+const isNum = (val) => {
+  return !isNaN(val);
 }
 
 // イコール押された場合
