@@ -34,6 +34,7 @@ const updatePreview = (clickedVal) => {
 // array に push するかの判定
 // 配列が空かつ、特定の演算子が押された場合
 const appendClickedVals = (val) => {
+  const lastEle = clickedVals[clickedVals.length - 1];
   if (clickedVals.length == 0) {
     if (val == "%"
       || val == "÷"
@@ -47,13 +48,16 @@ const appendClickedVals = (val) => {
     }
   } else {
     // 演算子が連続で押された場合、配列に追加せず終了
-    if (isOperator(clickedVals[clickedVals.length - 1]) && isOperator(val)) {
+    if (isOperator(lastEle) && isOperator(val)) {
       // 別の演算子が押された場合、配列の最後を削除し追加
-      if (clickedVals[clickedVals.length - 1] != val) {
+      if (lastEle != val) {
         clickedVals.pop();
         clickedVals.push(val);
         // - の場合を考慮
       }
+    } else if (lastEle === "%" && isNum) {
+      clickedVals.push("×");
+      clickedVals.push(val);
     } else {
       clickedVals.push(val);
     }
