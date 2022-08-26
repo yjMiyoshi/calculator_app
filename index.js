@@ -1,74 +1,120 @@
+// 電卓に表示される計算式・結果
 let preview = "";
-let clickedVals = [];
+// 入力を受け付け OK だった値を詰めた配列
+let acceptedVals = [];
 // TODO equalState を消したい
 let equalState = false;
+// 計算履歴
 let histories = [];
 
 const updatePreview = (clickedVal) => {
-  // clear 処理
+  // switch 文で書いてもいいかも
+  // 階層深くなるから嫌かも
+  // switch (clickedVal) {
+  //   case "AC":
+  //   case "CE":
+  //     //
+  //     break;
+  //   case "=":
+  //     //
+  //     break;
+  // }
+
+  // 入力がクリア系の場合
   if (clickedVal === "AC" || clickedVal == "CE") {
+    console.log('クリアだよ');
     clearPreview(clickedVal);
     return;
   }
 
+  // 入力が "=" の場合
+  if (clickedVal == "=") {
+    console.log('イコールだよ');
+    equal(clickedVal);
+    return;
+  }
+
+  // 入力が数字の場合
+  if (isNum(clickedVal)) {
+    console.log('数字だよ');
+  }
+
+  // 入力が "." の場合
+  if (clickedVal == ".") {
+    console.log('ピリオドだよ');
+  }
+
+  // 入力が演算子(加減乗除)の場合
+  if (isOperator(clickedVal)) {
+    console.log('演算子だよ');
+  }
+
+  // 入力が "%" の場合
+  if (clickedVal == "%") {
+    console.log('パーセントだよ');
+  }
+
+
   // イコールクリック直後のボタンクリック操作時の処理
+  // if (histories.length) {
+  //   console.log('あるよ');
+  // } else {
+  //   console.log('ないよ');
+  // }
+
   if (equalState) {
     if (isNum(clickedVal) || clickedVal == ".") {
-      clickedVals = [];
+      acceptedVals = [];
     } else {
-      clickedVals = [histories[histories.length - 1].answer];
+      acceptedVals = [histories[histories.length - 1].answer];
     }
     const lastHis = histories[histories.length - 1];
     document.getElementById("prev-history").textContent = "Ans = " + lastHis.answer;
   }
 
-  appendClickedVals(clickedVal);
+  appendAcceptedVals(clickedVal);
 
-  // pleview の表示を更新
-  preview = clickedVals.join("");
+  // preview の表示を更新
+  preview = acceptedVals.join("");
   document.getElementById("preview").value = preview;
   document.getElementById("clear").textContent = "CE";
   equalState = false;
 }
 
-// array に push するかの判定
-// 配列が空かつ、特定の演算子が押された場合
-const appendClickedVals = (val) => {
-  const lastEle = clickedVals[clickedVals.length - 1];
-  if (clickedVals.length == 0) {
+// array に push するかの判定 配列が空かつ、特定の演算子が押された場合
+// TODO 命名変えたい
+const appendAcceptedVals = (val) => {
+  const lastEle = acceptedVals[acceptedVals.length - 1];
+  if (acceptedVals.length == 0) {
     if (val == "%"
       || val == "÷"
       || val == "×"
       || val == "+"
     ) {
-      clickedVals.push("0");
+      acceptedVals.push("0");
       appendArray(val);
     } else {
-      clickedVals.push(val);
+      acceptedVals.push(val);
     }
   } else {
     // 演算子が連続で押された場合、配列に追加せず終了
     if (isOperator(lastEle) && isOperator(val)) {
       // 別の演算子が押された場合、配列の最後を削除し追加
       if (lastEle != val) {
-        clickedVals.pop();
+        acceptedVals.pop();
         appendArray(val);
         // - の場合を考慮
       }
     } else if (lastEle === "%" && isNum) {
-      clickedVals.push("×");
-      clickedVals.push(val);
+      acceptedVals.push("×");
+      acceptedVals.push(val);
     } else {
       appendArray(val);
     }
   }
-  console.log('clickedVals');
-  console.log(clickedVals);
 }
 
 const appendArray = (val) => {
-  console.log('clickedVals');
-  console.log(clickedVals);
   if (val == "%"
     || val == "÷"
     || val == "×"
@@ -77,10 +123,10 @@ const appendArray = (val) => {
   ) {
     // 前後にスペース配置
     // TODO 書き方ダサい
-    val = " " + val + " ";
-    clickedVals.push(val);
+    // val = " " + val + " ";
+    acceptedVals.push(val);
   } else {
-    clickedVals.push(val)
+    acceptedVals.push(val)
   }
 }
 
@@ -92,11 +138,11 @@ const isNum = (val) => {
 // イコール押された場合
 const equal = (arg) => {
   // イコールが最初に押されるのを防ぐ
-  if (clickedVals.length == 0) {
+  if (acceptedVals.length == 0) {
     return;
   }
   // 最後に入力されたものが演算子の場合、終了
-  const val = clickedVals[clickedVals.length - 1]
+  const val = acceptedVals[acceptedVals.length - 1]
   if (val == "÷"
     || val == "×"
     || val == "−"
@@ -107,7 +153,7 @@ const equal = (arg) => {
 
   // 配列から式を作る
   let expression = "";
-  expression = createExpression(clickedVals);
+  expression = createExpression(acceptedVals);
   expression = expression.replace(/\s+/g, "");
   console.log(expression)
   equalState = true;
@@ -117,7 +163,7 @@ const equal = (arg) => {
   document.getElementById("clear").textContent = "AC";
 
   // 計算履歴の配列に追加
-  histories.push({ expression: preview, answer: calculate(expression), clickedVals });
+  histories.push({ expression: preview, answer: calculate(expression), acceptedVals });
   const lastHis = histories[histories.length - 1];
   document.getElementById("prev-history").textContent = lastHis.expression + " = ";
   createHistoryTable();
@@ -135,13 +181,13 @@ const createExpression = (val) => {
 
   for (let i = 0; i < val.length; i++) {
     // TODO space を入れた書き方ダサい
-    if (val[i] == " ÷ ") {
+    if (val[i] == "÷") {
       expression += "/";
-    } else if (val[i] == " × ") {
+    } else if (val[i] == "×") {
       expression += "*";
-    } else if (val[i] == " − ") {
+    } else if (val[i] == "−") {
       expression += "-";
-    } else if (val[i] == " % ") {
+    } else if (val[i] == "%") {
       expression += "/100";
     } else {
       expression += val[i];
@@ -157,18 +203,23 @@ const calculate = (expression) => {
   return new Function("return " + expression + ";")();
 }
 
-const clearPreview = (str) => {
-  if (str === "AC") {
-    allClear(); // 全削除
-  }
-  if (str === "CE") {
-    clearEntry(); // 一文字削除
+const clearPreview = (val) => {
+  console.log("go switch");
+  switch (val) {
+    case "AC":
+      allClear(); // 全削除
+      break;
+    case "CE":
+      clearEntry(); // 一文字削除
+      break;
+    default:
+      break;
   }
 }
 
 // AC 押された場合、全削除
 const allClear = () => {
-  clickedVals = [];
+  acceptedVals = [];
   // 0の初期表示をさせる
   document.getElementById("preview").value = "0";
   document.getElementById("clear").textContent = "CE";
@@ -176,12 +227,12 @@ const allClear = () => {
 
 // CE 押された場合、一文字削除
 const clearEntry = () => {
-  if (clickedVals.length > 0) {
-    clickedVals.pop();
+  if (acceptedVals.length > 0) {
+    acceptedVals.pop();
   }
-  preview = clickedVals.join("");
+  preview = acceptedVals.join("");
   // 最後の要素の場合、value を0に書き換える
-  if (clickedVals.length == 0) {
+  if (acceptedVals.length == 0) {
     document.getElementById("preview").value = "0";
   } else {
     document.getElementById("preview").value = preview;
@@ -189,13 +240,13 @@ const clearEntry = () => {
 }
 
 // 押されたボタンが記号か確認
-const isOperator = (operator) => {
+const isOperator = (val) => {
   let result = false;
 
-  if (operator == "÷"
-    || operator == "×"
-    || operator == "+"
-    || operator == "−"
+  if (val == "÷"
+    || val == "×"
+    || val == "+"
+    || val == "−"
   ) {
     result = true;
   }
@@ -240,11 +291,11 @@ const historyClick = (e) => {
   if (historyType == "expression") {
     const expression = history.expression;
     document.getElementById("preview").value = expression;
-    clickedVals = history.clickedVals;
+    acceptedVals = history.acceptedVals;
   } else {
     const answer = history.answer;
     document.getElementById("preview").value = answer;
-    clickedVals = [answer];
+    acceptedVals = [answer];
   }
   closeModal(e);
 }
