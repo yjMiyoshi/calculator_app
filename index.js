@@ -26,9 +26,9 @@ const updatePreview = (clickedVal) => {
 
   // pleview の表示を更新
   preview = clickedVals.join("");
-  equalState = false;
   document.getElementById("preview").value = preview;
   document.getElementById("clear").textContent = "CE";
+  equalState = false;
 }
 
 // array に push するかの判定
@@ -76,8 +76,8 @@ const appendArray = (val) => {
     || val == "+"
   ) {
     // 前後にスペース配置
-    // TODO スペースいれるとerrorなので解消する
-    // val = " " + val + " ";
+    // TODO 書き方ダサい
+    val = " " + val + " ";
     clickedVals.push(val);
   } else {
     clickedVals.push(val)
@@ -108,6 +108,8 @@ const equal = (arg) => {
   // 配列から式を作る
   let expression = "";
   expression = createExpression(clickedVals);
+  expression = expression.replace(/\s+/g, "");
+  console.log(expression)
   equalState = true;
 
   // 計算して、preview に反映する
@@ -132,13 +134,14 @@ const createExpression = (val) => {
   let expression = "";
 
   for (let i = 0; i < val.length; i++) {
-    if (val[i] == "÷") {
+    // TODO space を入れた書き方ダサい
+    if (val[i] == " ÷ ") {
       expression += "/";
-    } else if (val[i] == "×") {
+    } else if (val[i] == " × ") {
       expression += "*";
-    } else if (val[i] == "−") {
+    } else if (val[i] == " − ") {
       expression += "-";
-    } else if (val[i] == "%") {
+    } else if (val[i] == " % ") {
       expression += "/100";
     } else {
       expression += val[i];
