@@ -2,23 +2,25 @@
 let preview = "";
 // 入力を受け付け OK だった値を詰めた配列
 let acceptedVals = [];
-// TODO equalState を消したい
+// イコールを押した直後か判定
 let equalState = false;
 // 計算履歴
 let histories = [];
 
 const updatePreview = (clickedVal) => {
-  // switch 文で書いてもいいかも
-  // 階層深くなるから嫌かも
-  // switch (clickedVal) {
-  //   case "AC":
-  //   case "CE":
-  //     //
-  //     break;
-  //   case "=":
-  //     //
-  //     break;
-  // }
+  // 最後に入力したもの
+  const lastElement = acceptedVals[acceptedVals.length - 1];
+
+  // イコールクリック直後のボタンクリック操作時の処理
+  if (equalState) {
+    if (isNum(clickedVal) || clickedVal == ".") {
+      acceptedVals = [];
+    } else {
+      acceptedVals = [histories[histories.length - 1].answer];
+    }
+    const lastHistory = histories[histories.length - 1];
+    document.getElementById("prev-history").textContent = "Ans = " + lastHistory.answer;
+  }
 
   // 入力がクリア系の場合
   if (clickedVal === "AC" || clickedVal == "CE") {
@@ -30,49 +32,62 @@ const updatePreview = (clickedVal) => {
   // 入力が "=" の場合
   if (clickedVal == "=") {
     console.log('イコールだよ');
-    equal(clickedVal);
+    equal();
     return;
   }
 
   // 入力が数字の場合
   if (isNum(clickedVal)) {
     console.log('数字だよ');
+    if (lastElement == "%") {
+      acceptedVals.push("×");
+    }
+    acceptedVals.push(clickedVal);
   }
 
   // 入力が "." の場合
   if (clickedVal == ".") {
     console.log('ピリオドだよ');
+    // ピリオドが複数個ないか確認
+    if (existsPeriod()) return;
+    acceptedVals.push(clickedVal);
   }
 
   // 入力が演算子(加減乗除)の場合
   if (isOperator(clickedVal)) {
     console.log('演算子だよ');
+    // 連続で同じ演算子は受け付けない
+    if (lastElement == clickedVal) {
+      return;
+    }
+
+    // 一文字目の入力の場合
+    if (acceptedVals.length == 0) {
+      if (clickedVal != "−") {
+        acceptedVals.push("0");
+      }
+      acceptedVals.push(clickedVal);
+    } else {
+      if (isOperator(lastElement)) {
+        acceptedVals.pop();
+      }
+    }
+    acceptedVals.push(clickedVal);
   }
 
   // 入力が "%" の場合
   if (clickedVal == "%") {
     console.log('パーセントだよ');
-  }
-
-
-  // イコールクリック直後のボタンクリック操作時の処理
-  // if (histories.length) {
-  //   console.log('あるよ');
-  // } else {
-  //   console.log('ないよ');
-  // }
-
-  if (equalState) {
-    if (isNum(clickedVal) || clickedVal == ".") {
-      acceptedVals = [];
+    // 一文字目の入力の場合
+    if (acceptedVals.length == 0) {
+      acceptedVals.push("0");
     } else {
-      acceptedVals = [histories[histories.length - 1].answer];
+      if (isOperator(lastElement)) {
+        acceptedVals.pop();
+      }
     }
-    const lastHis = histories[histories.length - 1];
-    document.getElementById("prev-history").textContent = "Ans = " + lastHis.answer;
+    acceptedVals.push(clickedVal);
   }
-
-  appendAcceptedVals(clickedVal);
 
   // preview の表示を更新
   preview = acceptedVals.join("");
@@ -81,73 +96,23 @@ const updatePreview = (clickedVal) => {
   equalState = false;
 }
 
-// array に push するかの判定 配列が空かつ、特定の演算子が押された場合
-// TODO 命名変えたい
-const appendAcceptedVals = (val) => {
-  const lastEle = acceptedVals[acceptedVals.length - 1];
-  if (acceptedVals.length == 0) {
-    if (val == "%"
-      || val == "÷"
-      || val == "×"
-      || val == "+"
-    ) {
-      acceptedVals.push("0");
-      appendArray(val);
-    } else {
-      acceptedVals.push(val);
-    }
-  } else {
-    // 演算子が連続で押された場合、配列に追加せず終了
-    if (isOperator(lastEle) && isOperator(val)) {
-      // 別の演算子が押された場合、配列の最後を削除し追加
-      if (lastEle != val) {
-        acceptedVals.pop();
-        appendArray(val);
-        // - の場合を考慮
-      }
-    } else if (lastEle === "%" && isNum) {
-      acceptedVals.push("×");
-      acceptedVals.push(val);
-    } else {
-      appendArray(val);
-    }
-  }
-}
-
-const appendArray = (val) => {
-  if (val == "%"
-    || val == "÷"
-    || val == "×"
-    || val == "−"
-    || val == "+"
-  ) {
-    // 前後にスペース配置
-    // TODO 書き方ダサい
-    // val = " " + val + " ";
-    acceptedVals.push(val);
-  } else {
-    acceptedVals.push(val)
-  }
-}
-
 // 数字かどうかを判定する
 const isNum = (val) => {
   return !isNaN(val);
 }
 
+
+
 // イコール押された場合
-const equal = (arg) => {
+const equal = () => {
   // イコールが最初に押されるのを防ぐ
   if (acceptedVals.length == 0) {
     return;
   }
+
   // 最後に入力されたものが演算子の場合、終了
-  const val = acceptedVals[acceptedVals.length - 1]
-  if (val == "÷"
-    || val == "×"
-    || val == "−"
-    || val == "+"
-  ) {
+  const lastVal = acceptedVals[acceptedVals.length - 1]
+  if (isOperator(lastVal)) {
     return;
   }
 
@@ -164,8 +129,8 @@ const equal = (arg) => {
 
   // 計算履歴の配列に追加
   histories.push({ expression: preview, answer: calculate(expression), acceptedVals });
-  const lastHis = histories[histories.length - 1];
-  document.getElementById("prev-history").textContent = lastHis.expression + " = ";
+  const lastHistory = histories[histories.length - 1];
+  document.getElementById("prev-history").textContent = lastHistory.expression + " = ";
   createHistoryTable();
 
   // モーダル初期表示消す
@@ -199,12 +164,11 @@ const createExpression = (val) => {
 
 // 計算を実行する
 const calculate = (expression) => {
-  // 文字列を関数に変換して返す
+  // 計算式を関数に変換して返す
   return new Function("return " + expression + ";")();
 }
 
 const clearPreview = (val) => {
-  console.log("go switch");
   switch (val) {
     case "AC":
       allClear(); // 全削除
@@ -220,7 +184,7 @@ const clearPreview = (val) => {
 // AC 押された場合、全削除
 const allClear = () => {
   acceptedVals = [];
-  // 0の初期表示をさせる
+  // 初期値0を表示させる
   document.getElementById("preview").value = "0";
   document.getElementById("clear").textContent = "CE";
 }
@@ -245,8 +209,8 @@ const isOperator = (val) => {
 
   if (val == "÷"
     || val == "×"
-    || val == "+"
     || val == "−"
+    || val == "+"
   ) {
     result = true;
   }
@@ -344,4 +308,51 @@ const createHistoryTable = () => {
   }
 }
 
+// 直前の履歴の更新
+const updateLastHistory = () => {
 
+}
+
+
+// 演算子の前にスペースをつける
+const addSpaceFront = () => {
+
+}
+
+// 演算子の後ろにスペースをつける
+const addSpaceBehind = () => {
+
+}
+
+// 演算子の前後にスペースをつける
+const addSpaceToOperator = () => {
+
+}
+
+// 乗除の演算子のあとにマイナスがきた場合、入力をうけつける
+
+
+// acceptedVals の最後の要素の末尾スペース削除し、preview に反映
+// 関数にしなくてよいかも
+const trimEndSpace = () => {
+  acceptedVals[acceptedVals.length - 1].trimEnd();
+}
+
+// 演算子を区切りで分割し、文字列内にピリオドが入っているか判定する
+const existsPeriod = () => {
+  const array = acceptedVals;
+  const str = array.join("");
+  const trimmedStr = str.replace(/ /g, ""); // 空白の除去
+
+  // ÷×−+ のいずれかが合致した最後のインデックスを探す
+  const opeArray = ["÷", "×", "−", "+"];
+  const opeIndexArray = [];
+  for (let i = 0; i < opeArray.length; i++) {
+    opeIndexArray.push(trimmedStr.indexOf(opeArray[i]));
+  }
+
+  // 最後の ÷×−+ 以降にピリオドが入っているか確認
+  const afterLastOperator = trimmedStr.substring(Math.max(...opeIndexArray) + 1);
+  const boolean = afterLastOperator.match(/\./)
+  return boolean;
+}
