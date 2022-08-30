@@ -7,7 +7,7 @@ let equalState = false;
 // 計算履歴
 let histories = [];
 
-const updatePreview = (clickedVal) => {
+const updatePreviewXX = (clickedVal) => {
   // 最後に入力したもの
   const lastElement = acceptedVals[acceptedVals.length - 1];
 
@@ -32,7 +32,7 @@ const updatePreview = (clickedVal) => {
   // 入力が "=" の場合
   if (clickedVal == "=") {
     console.log('イコールだよ');
-    equal();
+    clickEqual();
     return;
   }
 
@@ -96,23 +96,120 @@ const updatePreview = (clickedVal) => {
   equalState = false;
 }
 
-// 数字かどうかを判定する
-const isNum = (val) => {
-  return !isNaN(val);
+// preview の更新
+const updatePreview = () => {
+  preview = acceptedVals.join("");
+  document.getElementById("preview").value = preview;
+  document.getElementById("clear").textContent = "CE";
+  equalState = false;
 }
 
 
+// 数字ボタンクリック時
+const clickNumber = (clickedVal) => {
+  console.log('数字だよ');
+  // 最後に入力したもの
+  const lastElement = acceptedVals[acceptedVals.length - 1];
 
-// イコール押された場合
-const equal = () => {
+  // イコールクリック直後のボタンクリック操作時の処理
+  continueCalculate(clickedVal);
+
+  if (lastElement == "%") {
+    acceptedVals.push("×");
+  }
+  acceptedVals.push(clickedVal);
+
+  updatePreview();
+}
+
+// クリア系ボタンクリック時
+const clickClear = (clickedVal) => {
+  console.log('クリアだよ');
+  // イコールクリック直後のボタンクリック操作時の処理
+  continueCalculate(clickedVal);
+
+  clearPreview(clickedVal);
+  return;
+}
+
+// 演算子ボタンクリック時
+const clickOperator = (clickedVal) => {
+  console.log('演算子だよ');
+  // 最後に入力したもの
+  const lastElement = acceptedVals[acceptedVals.length - 1];
+
+  // イコールクリック直後のボタンクリック操作時の処理
+  continueCalculate(clickedVal);
+
+  // 連続で同じ演算子は受け付けない
+  if (lastElement == clickedVal) {
+    return;
+  }
+
+  // 一文字目の入力の場合
+  if (acceptedVals.length == 0) {
+    if (clickedVal != "−") {
+      acceptedVals.push("0");
+    }
+    acceptedVals.push(clickedVal);
+  } else {
+    if (isOperator(lastElement)) {
+      acceptedVals.pop();
+    }
+  }
+  acceptedVals.push(clickedVal);
+
+  updatePreview();
+}
+
+// パーセントボタンクリック時
+const clickPercent = (clickedVal) => {
+  console.log('パーセントだよ');
+  // 最後に入力したもの
+  const lastElement = acceptedVals[acceptedVals.length - 1];
+
+  // イコールクリック直後のボタンクリック操作時の処理
+  continueCalculate(clickedVal);
+
+  // 一文字目の入力の場合
+  if (acceptedVals.length == 0) {
+    acceptedVals.push("0");
+  } else {
+    if (isOperator(lastElement)) {
+      acceptedVals.pop();
+    }
+  }
+  acceptedVals.push(clickedVal);
+}
+
+// ピリオドボタンクリック時
+const clickPeriod = (clickedVal) => {
+  console.log('ピリオドだよ');
+  // イコールクリック直後のボタンクリック操作時の処理
+  continueCalculate(clickedVal);
+
+  // ピリオドが複数個ないか確認
+  if (existsPeriod()) return;
+  acceptedVals.push(clickedVal);
+
+  updatePreview();
+}
+
+
+// イコールボタンクリック時
+const clickEqual = (clickedVal) => {
+  console.log('イコールだよ');  
+  // イコールクリック直後のボタンクリック操作時の処理
+  continueCalculate(clickedVal);
+
   // イコールが最初に押されるのを防ぐ
   if (acceptedVals.length == 0) {
     return;
   }
-
+  
   // 最後に入力されたものが演算子の場合、終了
-  const lastVal = acceptedVals[acceptedVals.length - 1]
-  if (isOperator(lastVal)) {
+  const lastElement = acceptedVals[acceptedVals.length - 1]
+  if (isOperator(lastElement)) {
     return;
   }
 
@@ -139,6 +236,25 @@ const equal = () => {
     document.getElementById("history-table").style.display = "block";
   }
 }
+
+// 計算結果に対し、計算を続けるかどうか
+const continueCalculate = (clickedVal) => {
+  if (equalState) {
+    if (isNum(clickedVal) || clickedVal == ".") {
+      acceptedVals = [];
+    } else {
+      acceptedVals = [histories[histories.length - 1].answer];
+    }
+    const lastHistory = histories[histories.length - 1];
+    document.getElementById("prev-history").textContent = "Ans = " + lastHistory.answer;
+  }
+}
+
+// 数字かどうかを判定する
+const isNum = (val) => {
+  return !isNaN(val);
+}
+
 
 // 配列から式を作る
 const createExpression = (val) => {
