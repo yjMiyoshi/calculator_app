@@ -235,7 +235,6 @@ const updatePreview = () => {
   const opeWithSpaceArray = [];
 
   for (let i = 0; i < acceptedVals.length; i++) {
-    console.log(i);
     if (isOperator(acceptedVals[i])) {
       opeWithSpaceArray.push(` ${acceptedVals[i]} `)
     } else {
