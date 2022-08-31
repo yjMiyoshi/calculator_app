@@ -96,15 +96,6 @@ const updatePreviewXX = (clickedVal) => {
   equalState = false;
 }
 
-// preview の更新
-const updatePreview = () => {
-  preview = acceptedVals.join("");
-  document.getElementById("preview").value = preview;
-  document.getElementById("clear").textContent = "CE";
-  equalState = false;
-}
-
-
 // 数字ボタンクリック時
 const clickNumber = (clickedVal) => {
   console.log('数字だよ');
@@ -151,7 +142,6 @@ const clickOperator = (clickedVal) => {
     if (clickedVal != "−") {
       acceptedVals.push("0");
     }
-    acceptedVals.push(clickedVal);
   } else {
     if (isOperator(lastElement)) {
       acceptedVals.pop();
@@ -180,6 +170,8 @@ const clickPercent = (clickedVal) => {
     }
   }
   acceptedVals.push(clickedVal);
+
+  updatePreview();
 }
 
 // ピリオドボタンクリック時
@@ -198,7 +190,7 @@ const clickPeriod = (clickedVal) => {
 
 // イコールボタンクリック時
 const clickEqual = (clickedVal) => {
-  console.log('イコールだよ');  
+  console.log('イコールだよ');
   // イコールクリック直後のボタンクリック操作時の処理
   continueCalculate(clickedVal);
 
@@ -206,7 +198,7 @@ const clickEqual = (clickedVal) => {
   if (acceptedVals.length == 0) {
     return;
   }
-  
+
   // 最後に入力されたものが演算子の場合、終了
   const lastElement = acceptedVals[acceptedVals.length - 1]
   if (isOperator(lastElement)) {
@@ -235,6 +227,25 @@ const clickEqual = (clickedVal) => {
     document.getElementById("modal-text").style.display = "none";
     document.getElementById("history-table").style.display = "block";
   }
+}
+
+// preview の更新
+const updatePreview = () => {
+  console.log('updatePreviewだよ');
+  const opeWithSpaceArray = [];
+
+  for (let i = 0; i < acceptedVals.length; i++) {
+    console.log(i);
+    if (isOperator(acceptedVals[i])) {
+      opeWithSpaceArray.push(` ${acceptedVals[i]} `)
+    } else {
+      opeWithSpaceArray.push(`${acceptedVals[i]}`)
+    }
+  }
+  preview = opeWithSpaceArray.join("");
+  document.getElementById("preview").value = preview;
+  document.getElementById("clear").textContent = "CE";
+  equalState = false;
 }
 
 // 計算結果に対し、計算を続けるかどうか
@@ -430,20 +441,11 @@ const updateLastHistory = () => {
 }
 
 
-// 演算子の前にスペースをつける
-const addSpaceFront = () => {
-
+// 演算子の前や後ろにスペースをつける
+const addSpace = () => {
+  
 }
 
-// 演算子の後ろにスペースをつける
-const addSpaceBehind = () => {
-
-}
-
-// 演算子の前後にスペースをつける
-const addSpaceToOperator = () => {
-
-}
 
 // 乗除の演算子のあとにマイナスがきた場合、入力をうけつける
 
