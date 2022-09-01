@@ -101,6 +101,9 @@ const updatePreviewXX = (clickedVal) => {
 // 数字ボタンクリック時
 const clickNumber = (clickedVal) => {
   console.log('数字だよ');
+  if (histories.length == 0) {
+    document.getElementById("prev-history").textContent = "Ans = 0";
+  }
   // 最後に入力したもの
   const lastElement = acceptedVals[acceptedVals.length - 1];
 
@@ -118,6 +121,9 @@ const clickNumber = (clickedVal) => {
 // クリア系ボタンクリック時
 const clickClear = (clickedVal) => {
   console.log('クリアだよ');
+  if (histories.length == 0) {
+    document.getElementById("prev-history").textContent = "Ans = 0";
+  }
   // イコールクリック直後のボタンクリック操作時の処理
   continueCalculate(clickedVal);
 
@@ -128,6 +134,9 @@ const clickClear = (clickedVal) => {
 // 演算子ボタンクリック時
 const clickOperator = (clickedVal) => {
   console.log('演算子だよ');
+  if (histories.length == 0) {
+    document.getElementById("prev-history").textContent = "Ans = 0";
+  }
   // 最後に入力したもの
   const lastElement = acceptedVals[acceptedVals.length - 1];
 
@@ -166,6 +175,9 @@ const clickOperator = (clickedVal) => {
 // パーセントボタンクリック時
 const clickPercent = (clickedVal) => {
   console.log('パーセントだよ');
+  if (histories.length == 0) {
+    document.getElementById("prev-history").textContent = "Ans = 0";
+  }
   // 最後に入力したもの
   const lastElement = acceptedVals[acceptedVals.length - 1];
 
@@ -188,6 +200,9 @@ const clickPercent = (clickedVal) => {
 // ピリオドボタンクリック時
 const clickPeriod = (clickedVal) => {
   console.log('ピリオドだよ');
+  if (histories.length == 0) {
+    document.getElementById("prev-history").textContent = "Ans = 0";
+  }
   // イコールクリック直後のボタンクリック操作時の処理
   continueCalculate(clickedVal);
 
@@ -203,6 +218,9 @@ const clickPeriod = (clickedVal) => {
 const clickEqual = (clickedVal) => {
   errorState = false;
   console.log('イコールだよ');
+  if (histories.length == 0) {
+    document.getElementById("prev-history").textContent = "Ans = 0";
+  }
   // イコールクリック直後のボタンクリック操作時の処理
   continueCalculate(clickedVal);
 
@@ -413,6 +431,8 @@ const historyClick = (e) => {
     document.getElementById("preview").value = answer;
     acceptedVals = [answer];
   }
+  const lastHistory = histories[histories.length - 1];
+  document.getElementById("prev-history").textContent = "Ans = " + lastHistory.answer;
   closeModal(e);
 }
 
@@ -453,6 +473,11 @@ const createHistoryTable = () => {
     if (histories[i].answer == "Error") {
       td3.classList.remove("td-1");
       td3.classList.add("td-3");
+    }
+
+    // history が6個以上の場合、border 付与
+    if (histories.length >= 6) {
+      tableEle.classList.add("modal-border");
     }
 
     table.appendChild(td1);

@@ -160,6 +160,10 @@ h1 {
   table-layout: auto;
 }
 
+.modal-border {
+  border-top: 1px solid rgb(218,220,224);
+}
+
 .td-1 {
   display: table-cell;
   height: 32px;
@@ -171,6 +175,10 @@ h1 {
   border-radius: 4px;
   text-align: center;
   vertical-align: middle;
+  /* 要素より長い文字列を省略する */
+  /* white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; */
 }
 
 .td-2 {
