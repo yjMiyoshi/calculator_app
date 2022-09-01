@@ -475,7 +475,12 @@ const createHistoryTable = () => {
       td3.classList.add("td-3");
     }
 
-    // history が6個以上の場合、border 付与
+    // history が存在する場合、position を変更
+    if (histories.length >= 1) {
+      document.getElementById("history-modal-icon").style.position = 'static';
+    }
+
+    // history が6個以上の場合、border と padding 付与
     if (histories.length >= 6) {
       tableEle.classList.add("modal-border");
     }
