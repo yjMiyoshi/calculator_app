@@ -98,7 +98,7 @@ h1 {
   width: 280px;
   max-width: 100%;
   min-height: 104px;
-  max-height: 999999px;
+  max-height: 346px;
   z-index: 3;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -144,6 +144,8 @@ h1 {
   top: 54px;
   left: 0;
   padding: 13px 16px 16px 16px;
+  max-height: 291px;
+  overflow-y: scroll;
 }
 
 .table-1+.table-1 {
