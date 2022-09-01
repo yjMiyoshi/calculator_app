@@ -12,6 +12,7 @@
 input {
   width: 100%;
   height: 100%;
+  padding: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -54,10 +55,9 @@ h1 {
 
 .main {
   position: relative;
-  height: 100%;
-  max-height: 100%;
-  margin: 12px;
   padding: 16px 0 12px 0;
+  margin: 0 12px 12px 12px;
+  max-height: 100%;
 }
 
 .panel {
@@ -68,15 +68,22 @@ h1 {
 }
 
 .history {
+  height: 20px;
   display: flex;
   justify-content: space-between;
 }
 
 #prev-history {
+  height: 13px;
   margin-top: 3px;
   font-size: 13px;
   color: rgb(112, 117, 122);
 }
+
+.his {
+  position: absolute;
+}
+
 
 .icon-1 {
   color: rgb(112, 117, 122);
@@ -117,6 +124,10 @@ h1 {
   padding: 16px;
   color: rgb(26, 115, 232);
   font-size: 22px;
+}
+
+#preview {
+  font-size: 32px;
 }
 
 #modal-text {
@@ -181,6 +192,8 @@ h1 {
 
 .calc-buttons {
   margin-top: 8px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .calc-buttons table {
@@ -192,8 +205,10 @@ h1 {
 }
 
 .btn-tr td>div {
-  height: 36px;
-  margin: 4px;
+  /* height: 36px;
+  margin: 4px; */
+  height: 38px;
+  margin: 2px;
   cursor: pointer;
   line-height: 34px;
   border-radius: 4px;
@@ -202,27 +217,39 @@ h1 {
 .calc-buttons td {
   height: 36px;
   text-align: center;
-
 }
 
 .color1 {
   color: rgb(32, 33, 36);
   background-color: rgb(218, 220, 224);
+  border: 1px solid rgb(255, 255, 255);
 }
 
 .color2 {
   color: rgb(32, 33, 36);
   background-color: rgb(241, 243, 244);
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.color1:active,
+.color2:active {
+  border: 1px solid rgb(218, 220, 224);
 }
 
 .color3 {
-  background-color: rgb(218, 220, 224);
   color: rgb(112, 117, 122);
+  background-color: rgb(218, 220, 224);
 }
 
 .color4 {
+  height: 36px !important;
+  margin: 4px !important;
   background-color: rgb(66, 133, 244);
   color: rgb(255, 255, 255);
+}
+
+.color4:active {
+  box-shadow: 0 1px 2px 0 rgba(66, 133, 244, .45), 0 3px 6px 2px rgba(66, 133, 244, .3);
 }
 
 .font1 {
