@@ -149,6 +149,9 @@ h1 {
 }
 
 .table-1 {
+  border-collapse: separate;
+  border-spacing: 0;
+  height: 32px;
   text-align: left;
   table-layout: auto;
 }
@@ -174,6 +177,20 @@ h1 {
   padding: 1px;
   font-size: 20px;
   color: rgb(112, 117, 122);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.td-3 {
+  pointer-events: none;
+  display: table-cell;
+  height: 32px;
+  line-height: 14px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: rgb(218, 220, 224);
+  background-color: rgb(248, 249, 250);
+  border-radius: 4px;
   text-align: center;
   vertical-align: middle;
 }
@@ -205,8 +222,6 @@ h1 {
 }
 
 .btn-tr td>div {
-  /* height: 36px;
-  margin: 4px; */
   height: 38px;
   margin: 2px;
   cursor: pointer;

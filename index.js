@@ -6,6 +6,8 @@ let acceptedVals = [];
 let equalState = false;
 // 計算履歴
 let histories = [];
+// 計算Error状態
+let errorState = false;
 
 const updatePreviewXX = (clickedVal) => {
   // 最後に入力したもの
@@ -199,6 +201,7 @@ const clickPeriod = (clickedVal) => {
 
 // イコールボタンクリック時
 const clickEqual = (clickedVal) => {
+  errorState = false;
   console.log('イコールだよ');
   // イコールクリック直後のボタンクリック操作時の処理
   continueCalculate(clickedVal);
@@ -212,6 +215,13 @@ const clickEqual = (clickedVal) => {
   const lastElement = acceptedVals[acceptedVals.length - 1]
   if (isOperator(lastElement)) {
     return;
+  }
+
+  // Error 表示
+  if (
+    acceptedVals.length == 1 && acceptedVals[0] == "."
+  ) {
+    errorState = true;
   }
 
   // 配列から式を作る
@@ -304,6 +314,9 @@ const createExpression = (val) => {
 // 計算を実行する
 const calculate = (expression) => {
   // 計算式を関数に変換して返す
+  if (errorState) {
+    return "Error";
+  }
   return new Function("return " + expression + ";")();
 }
 
@@ -434,6 +447,13 @@ const createHistoryTable = () => {
     td1.innerHTML = histories[i].expression;
     td2.innerHTML = "=";
     td3.innerHTML = histories[i].answer;
+
+    // Error の場合
+    console.log(histories)
+    if (histories[i].answer == "Error") {
+      td3.classList.remove("td-1");
+      td3.classList.add("td-3");
+    }
 
     table.appendChild(td1);
     table.appendChild(td2);
