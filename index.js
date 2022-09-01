@@ -132,6 +132,14 @@ const clickOperator = (clickedVal) => {
   // イコールクリック直後のボタンクリック操作時の処理
   continueCalculate(clickedVal);
 
+  // "÷"もしくは"×"のあとに"−"を受け付けた場合、演算子の入力はうけつけない
+  if (lastElement == "−" &&
+    (
+      acceptedVals[acceptedVals.length - 2] == "×" ||
+      acceptedVals[acceptedVals.length - 2] == "÷")) {
+    return;
+  }
+
   // 連続で同じ演算子は受け付けない
   if (lastElement == clickedVal) {
     return;
@@ -143,7 +151,8 @@ const clickOperator = (clickedVal) => {
       acceptedVals.push("0");
     }
   } else {
-    if (isOperator(lastElement)) {
+    if (clickedVal == "−" && ((lastElement == "×" || lastElement == "÷"))) {
+    } else if (isOperator(lastElement)) {
       acceptedVals.pop();
     }
   }
@@ -235,7 +244,11 @@ const updatePreview = () => {
   const opeWithSpaceArray = [];
 
   for (let i = 0; i < acceptedVals.length; i++) {
-    if (isOperator(acceptedVals[i])) {
+    // マイナスかつ直前が"÷"または"×"の場合
+    if (acceptedVals[i] == "−"
+      && (acceptedVals[i - 1] == "×" || acceptedVals[i - 1] == "÷")) {
+      opeWithSpaceArray.push(` -`)
+    } else if (isOperator(acceptedVals[i])) {
       opeWithSpaceArray.push(` ${acceptedVals[i]} `)
     } else {
       opeWithSpaceArray.push(`${acceptedVals[i]}`)
@@ -433,21 +446,6 @@ const createHistoryTable = () => {
     td3.addEventListener('click', historyClick);
   }
 }
-
-// 直前の履歴の更新
-const updateLastHistory = () => {
-
-}
-
-
-// 演算子の前や後ろにスペースをつける
-const addSpace = () => {
-  
-}
-
-
-// 乗除の演算子のあとにマイナスがきた場合、入力をうけつける
-
 
 // acceptedVals の最後の要素の末尾スペース削除し、preview に反映
 // 関数にしなくてよいかも
