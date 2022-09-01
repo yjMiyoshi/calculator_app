@@ -26,21 +26,18 @@ const updatePreviewXX = (clickedVal) => {
 
   // 入力がクリア系の場合
   if (clickedVal === "AC" || clickedVal == "CE") {
-    console.log('クリアだよ');
     clearPreview(clickedVal);
     return;
   }
 
   // 入力が "=" の場合
   if (clickedVal == "=") {
-    console.log('イコールだよ');
     clickEqual();
     return;
   }
 
   // 入力が数字の場合
   if (isNum(clickedVal)) {
-    console.log('数字だよ');
     if (lastElement == "%") {
       acceptedVals.push("×");
     }
@@ -49,7 +46,6 @@ const updatePreviewXX = (clickedVal) => {
 
   // 入力が "." の場合
   if (clickedVal == ".") {
-    console.log('ピリオドだよ');
     // ピリオドが複数個ないか確認
     if (existsPeriod()) return;
     acceptedVals.push(clickedVal);
@@ -57,7 +53,6 @@ const updatePreviewXX = (clickedVal) => {
 
   // 入力が演算子(加減乗除)の場合
   if (isOperator(clickedVal)) {
-    console.log('演算子だよ');
     // 連続で同じ演算子は受け付けない
     if (lastElement == clickedVal) {
       return;
@@ -79,7 +74,6 @@ const updatePreviewXX = (clickedVal) => {
 
   // 入力が "%" の場合
   if (clickedVal == "%") {
-    console.log('パーセントだよ');
     // 一文字目の入力の場合
     if (acceptedVals.length == 0) {
       acceptedVals.push("0");
@@ -99,8 +93,13 @@ const updatePreviewXX = (clickedVal) => {
 }
 
 // 数字ボタンクリック時
-const clickNumber = (clickedVal) => {
-  console.log('数字だよ');
+const clickNumber = (clickedVal, e) => {
+
+  // プレビューにクラス追加
+  document.getElementById("panel").classList.add("click-preview");
+  // 処理伝播を止める
+  e.stopPropagation();
+
   if (histories.length == 0) {
     document.getElementById("prev-history").textContent = "Ans = 0";
   }
@@ -119,8 +118,12 @@ const clickNumber = (clickedVal) => {
 }
 
 // クリア系ボタンクリック時
-const clickClear = (clickedVal) => {
-  console.log('クリアだよ');
+const clickClear = (clickedVal, e) => {
+  // プレビューにクラス追加
+  document.getElementById("panel").classList.add("click-preview");
+  // 処理伝播を止める
+  e.stopPropagation();
+
   if (histories.length == 0) {
     document.getElementById("prev-history").textContent = "Ans = 0";
   }
@@ -128,12 +131,17 @@ const clickClear = (clickedVal) => {
   continueCalculate(clickedVal);
 
   clearPreview(clickedVal);
+
   return;
 }
 
 // 演算子ボタンクリック時
-const clickOperator = (clickedVal) => {
-  console.log('演算子だよ');
+const clickOperator = (clickedVal, e) => {
+  // プレビューにクラス追加
+  document.getElementById("panel").classList.add("click-preview");
+  // 処理伝播を止める
+  e.stopPropagation();
+
   if (histories.length == 0) {
     document.getElementById("prev-history").textContent = "Ans = 0";
   }
@@ -173,8 +181,12 @@ const clickOperator = (clickedVal) => {
 }
 
 // パーセントボタンクリック時
-const clickPercent = (clickedVal) => {
-  console.log('パーセントだよ');
+const clickPercent = (clickedVal, e) => {
+  // プレビューにクラス追加
+  document.getElementById("panel").classList.add("click-preview");
+  // 処理伝播を止める
+  e.stopPropagation();
+
   if (histories.length == 0) {
     document.getElementById("prev-history").textContent = "Ans = 0";
   }
@@ -198,8 +210,12 @@ const clickPercent = (clickedVal) => {
 }
 
 // ピリオドボタンクリック時
-const clickPeriod = (clickedVal) => {
-  console.log('ピリオドだよ');
+const clickPeriod = (clickedVal, e) => {
+  // プレビューにクラス追加
+  document.getElementById("panel").classList.add("click-preview");
+  // 処理伝播を止める
+  e.stopPropagation();
+
   if (histories.length == 0) {
     document.getElementById("prev-history").textContent = "Ans = 0";
   }
@@ -215,9 +231,13 @@ const clickPeriod = (clickedVal) => {
 
 
 // イコールボタンクリック時
-const clickEqual = (clickedVal) => {
+const clickEqual = (clickedVal, e) => {
+  // プレビューにクラス追加
+  document.getElementById("panel").classList.add("click-preview");
+  // 処理伝播を止める
+  e.stopPropagation();
+
   errorState = false;
-  console.log('イコールだよ');
   if (histories.length == 0) {
     document.getElementById("prev-history").textContent = "Ans = 0";
   }
@@ -246,7 +266,6 @@ const clickEqual = (clickedVal) => {
   let expression = "";
   expression = createExpression(acceptedVals);
   expression = expression.replace(/\s+/g, "");
-  console.log(expression)
   equalState = true;
 
   // 計算して、preview に反映する
@@ -268,7 +287,6 @@ const clickEqual = (clickedVal) => {
 
 // preview の更新
 const updatePreview = () => {
-  console.log('updatePreviewだよ');
   const opeWithSpaceArray = [];
 
   for (let i = 0; i < acceptedVals.length; i++) {
@@ -408,6 +426,8 @@ const outsideClose = (e) => {
   if (e.target != document.getElementById("modal")) {
     modal.style.display = "none";
   }
+  // プレビューからclass削除
+  document.getElementById("panel").classList.remove("click-preview");
 }
 addEventListener("click", outsideClose);
 
@@ -469,7 +489,6 @@ const createHistoryTable = () => {
     td3.innerHTML = histories[i].answer;
 
     // Error の場合
-    console.log(histories)
     if (histories[i].answer == "Error") {
       td3.classList.remove("td-1");
       td3.classList.add("td-3");
