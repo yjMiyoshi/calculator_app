@@ -87,7 +87,7 @@ const updatePreviewXX = (clickedVal) => {
 
   // preview の表示を更新
   preview = acceptedVals.join("");
-  document.getElementById("preview").value = preview;
+  document.getElementById("preview").textContent = preview;
   document.getElementById("clear").textContent = "CE";
   equalState = false;
 }
@@ -269,7 +269,7 @@ const clickEqual = (clickedVal, e) => {
   equalState = true;
 
   // 計算して、preview に反映する
-  document.getElementById("preview").value = calculate(expression);
+  document.getElementById("preview").textContent = calculate(expression);
   document.getElementById("clear").textContent = "AC";
 
   // 計算履歴の配列に追加
@@ -294,6 +294,8 @@ const updatePreview = () => {
     if (acceptedVals[i] == "−"
       && (acceptedVals[i - 1] == "×" || acceptedVals[i - 1] == "÷")) {
       opeWithSpaceArray.push(` -`)
+    } else if (i == 0 && acceptedVals[i] == "−") {
+      opeWithSpaceArray.push(`-`)
     } else if (isOperator(acceptedVals[i])) {
       opeWithSpaceArray.push(` ${acceptedVals[i]} `)
     } else {
@@ -301,7 +303,7 @@ const updatePreview = () => {
     }
   }
   preview = opeWithSpaceArray.join("");
-  document.getElementById("preview").value = preview;
+  document.getElementById("preview").textContent = preview;
   document.getElementById("clear").textContent = "CE";
   equalState = false;
 }
@@ -373,7 +375,7 @@ const clearPreview = (val) => {
 const allClear = () => {
   acceptedVals = [];
   // 初期値0を表示させる
-  document.getElementById("preview").value = "0";
+  document.getElementById("preview").textContent = "0";
   document.getElementById("clear").textContent = "CE";
 }
 
@@ -385,9 +387,9 @@ const clearEntry = () => {
   preview = acceptedVals.join("");
   // 最後の要素の場合、value を0に書き換える
   if (acceptedVals.length == 0) {
-    document.getElementById("preview").value = "0";
+    document.getElementById("preview").textContent = "0";
   } else {
-    document.getElementById("preview").value = preview;
+    document.getElementById("preview").textContent = preview;
   }
 }
 
@@ -444,11 +446,11 @@ const historyClick = (e) => {
 
   if (historyType == "expression") {
     const expression = history.expression;
-    document.getElementById("preview").value = expression;
+    document.getElementById("preview").textContent = expression;
     acceptedVals = history.acceptedVals;
   } else {
     const answer = history.answer;
-    document.getElementById("preview").value = answer;
+    document.getElementById("preview").textContent = answer;
     acceptedVals = [answer];
   }
   const lastHistory = histories[histories.length - 1];

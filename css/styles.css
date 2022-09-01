@@ -128,7 +128,24 @@ h1 {
 }
 
 #preview {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  max-width: 280px;
   font-size: 32px;
+}
+
+.preview {
+  height: 32px;
+  margin-top: 6px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  text-align: right;
+}
+
+.preview::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+  display:none;
 }
 
 #modal-text {
@@ -160,7 +177,7 @@ h1 {
 }
 
 .modal-border {
-  border-top: 1px solid rgb(218,220,224);
+  border-top: 1px solid rgb(218, 220, 224);
   padding-top: 16px !important;
 }
 
@@ -207,12 +224,6 @@ h1 {
   vertical-align: middle;
 }
 
-.preview {
-  height: 32px;
-  margin-top: 6px;
-  display: flex;
-}
-
 .click-preview {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.30);
   border: 1px solid #4285f4;
@@ -222,6 +233,7 @@ h1 {
   font-size: 32px;
   text-align: right;
   color: rgb(77, 81, 86);
+  text-align: right;
 }
 
 .calc-buttons {
