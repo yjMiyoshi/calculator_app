@@ -268,12 +268,14 @@ const clickEqual = (clickedVal, e) => {
   expression = expression.replace(/\s+/g, "");
   equalState = true;
 
+  const result = calculate(expression);
+
   // 計算して、preview に反映する
-  document.getElementById("preview").textContent = calculate(expression);
+  document.getElementById("preview").textContent = result;
   document.getElementById("clear").textContent = "AC";
 
   // 計算履歴の配列に追加
-  histories.push({ expression: preview, answer: calculate(expression), acceptedVals });
+  histories.push({ expression: preview, answer: result, acceptedVals });
   const lastHistory = histories[histories.length - 1];
   document.getElementById("prev-history").textContent = lastHistory.expression + " = ";
   createHistoryTable();
@@ -355,7 +357,13 @@ const calculate = (expression) => {
   if (errorState) {
     return "Error";
   }
-  return new Function("return " + expression + ";")();
+
+  console.log(expression);
+  
+  let result = new Function("return " + expression + ";")();
+  console.log(result);
+
+  return result;
 }
 
 const clearPreview = (val) => {
