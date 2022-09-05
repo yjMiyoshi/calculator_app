@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- 色変更のアニメーション用に追加 -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <link rel="stylesheet" href="css/styles.css">
   <title>電卓</title>
 </head>
@@ -31,8 +35,7 @@
         <div id="prev-history"></div>
       </div>
       <div class="preview">
-        <span id="preview" class="expression">0</span>
-        <!-- <input readonly id="preview" type="text" value="0" class="expression"> -->
+        <div id="preview">0</div>
       </div>
     </div>
 

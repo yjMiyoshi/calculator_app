@@ -127,25 +127,31 @@ h1 {
   font-size: 22px;
 }
 
-#preview {
-  display: inline-block;
-  width: 100%;
-  text-align: right;
-  max-width: 280px;
-  font-size: 32px;
-}
-
 .preview {
+  position: relative;
   height: 32px;
   margin-top: 6px;
   display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
   text-align: right;
+  overflow: hidden;
 }
 
-.preview::-webkit-scrollbar {  /* Chrome, Safari 対応 */
-  display:none;
+#preview {
+  position: absolute;
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-size: 32px;
+  color: rgb(77, 81, 86);
+  /* 改行をさせない */
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+/* Scroll bar 非表示 */
+#preview::-webkit-scrollbar {
+  display: none;
 }
 
 #modal-text {
@@ -162,6 +168,7 @@ h1 {
   padding: 0 16px 16px 16px;
   max-height: 291px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .table-1+.table-1 {
@@ -169,9 +176,10 @@ h1 {
 }
 
 .table-1 {
+  height: 32px;
+  max-width: 248px;
   border-collapse: separate;
   border-spacing: 0;
-  height: 32px;
   text-align: left;
   table-layout: auto;
 }
@@ -184,6 +192,8 @@ h1 {
 .td-1 {
   display: table-cell;
   height: 32px;
+  /* (248px -30px) / 2 の幅*/
+  max-width: 109px;
   line-height: 14px;
   padding: 6px 12px;
   font-size: 14px;
@@ -193,14 +203,15 @@ h1 {
   text-align: center;
   vertical-align: middle;
   /* 要素より長い文字列を省略する */
-  /* white-space: nowrap;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden; */
+  overflow: hidden;
 }
 
 .td-2 {
   display: table-cell;
   width: 30px;
+  min-width: 30px;
   height: 30px;
   line-height: 20px;
   padding: 1px;
@@ -211,6 +222,25 @@ h1 {
 }
 
 .td-3 {
+  display: table-cell;
+  height: 32px;
+  /* (248px -30px) / 2 の幅*/
+  max-width: 109px;
+  line-height: 14px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: rgb(26, 115, 232);
+  border: 1px solid rgb(218, 220, 224);
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  /* 要素より長い文字列を省略する */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.td-4 {
   pointer-events: none;
   display: table-cell;
   height: 32px;
@@ -230,6 +260,8 @@ h1 {
 }
 
 .expression {
+  display: block;
+  width: 100%;
   font-size: 32px;
   text-align: right;
   color: rgb(77, 81, 86);

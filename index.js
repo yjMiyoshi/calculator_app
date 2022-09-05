@@ -232,6 +232,24 @@ const clickPeriod = (clickedVal, e) => {
 
 // イコールボタンクリック時
 const clickEqual = (clickedVal, e) => {
+
+  // 直前の履歴に animation つける
+  $("#prev-history").animate({
+    fontSize: '170%',
+    color: "#000",
+  }, 0);
+  $("#prev-history").animate({
+    fontSize: '13px',
+    color: "rgb(112, 117, 122)",
+  }, 200);
+  // 直前の履歴に animation つける
+  $("#preview").animate({
+    top: '38px',
+  }, 0);
+  $("#preview").animate({
+    top: '0px',
+  }, 200);
+
   // プレビューにクラス追加
   document.getElementById("panel").classList.add("click-preview");
   // 処理伝播を止める
@@ -306,6 +324,8 @@ const updatePreview = () => {
   }
   preview = opeWithSpaceArray.join("");
   document.getElementById("preview").textContent = preview;
+  // 桁数が多い場合、右寄せ開始に (scrollRight は存在しないため、left を使用)
+  document.getElementById("preview").scrollLeft = 10000;
   document.getElementById("clear").textContent = "CE";
   equalState = false;
 }
@@ -358,12 +378,58 @@ const calculate = (expression) => {
     return "Error";
   }
 
-  console.log(expression);
-  
   let result = new Function("return " + expression + ";")();
-  console.log(result);
+  let resultStr = result.toString();
+
+  // ピリオドが入っていない場合
+  if (resultStr.indexOf('.') == -1) {
+    // e が入っている場合
+    if (resultStr.indexOf('e') != -1) {
+      result = result.toPrecision(8);
+    }
+
+    // 13桁以上の場合
+    else if (numDigits(result) >= 13) {
+      result = result.toPrecision(8);
+    }
+    if (expression.indexOf('e') != -1) {
+      // 含む場合の処理
+      result = result.toPrecision(8);
+    }
+  }
+
+  // ピリオドが入っている場合
+  if (resultStr.indexOf('.') != -1) {
+    // e が入っている場合
+    if (resultStr.indexOf('e') != -1) {
+      result = result.toPrecision(8);
+    }
+
+    // 小数点より左側の桁数が13桁以上の場合
+    else if (numDigitsOverPeriod >= 13) {
+      result = result.toPrecision(8);
+    } else {
+      if (result >= 1) {
+        result = result.toPrecision(12);
+      } else {
+        result = result.toPrecision(12);
+      }
+    }
+  }
 
   return result;
+}
+
+// 桁数を返す関数
+const numDigits = (num) => {
+  // 一旦数値を文字列に変換し、長さを求める
+  return num.toString().length;
+}
+
+// 小数点より左の桁数を返す関数
+const numDigitsOverPeriod = (num) => {
+  // 一旦数値を文字列に変換し、小数点で分割、1つめの長さを求める
+  return num.toString().split('.')[0].length;
 }
 
 const clearPreview = (val) => {
@@ -441,8 +507,6 @@ const outsideClose = (e) => {
 }
 addEventListener("click", outsideClose);
 
-// TODO オペランドにピリオドが複数入っていないかチェック
-
 
 // 履歴の式と計算結果クリック時の挙動
 const historyClick = (e) => {
@@ -468,7 +532,6 @@ const historyClick = (e) => {
 
 // 配列からテーブルを作成する
 const createHistoryTable = () => {
-
   // 初期化
   document.getElementById("history-table").innerHTML = "";
   let tableEle = document.getElementById("history-table");
@@ -480,10 +543,14 @@ const createHistoryTable = () => {
     const td1 = document.createElement("td");
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
+
     // class 付与
     td1.classList.add("td-1");
     td2.classList.add("td-2");
-    td3.classList.add("td-1");
+    td3.classList.add("td-3");
+
+    // id 付与 test
+    td3.setAttribute('id', 'test');
 
     // 履歴クリック用
     td1.dataset.historyIndex = i;
@@ -500,8 +567,8 @@ const createHistoryTable = () => {
 
     // Error の場合
     if (histories[i].answer == "Error") {
-      td3.classList.remove("td-1");
-      td3.classList.add("td-3");
+      td3.classList.remove("td-3");
+      td3.classList.add("td-4");
     }
 
     // history が存在する場合、position を変更
