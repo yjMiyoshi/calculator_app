@@ -417,7 +417,7 @@ const calculate = (expression) => {
 
     // 数値変換し 小数点以下0切り捨て
     result = Number(result);
-    result = result.toLocaleString(undefined, { maximumFractionDigits: 3 })
+    result = result.toLocaleString(undefined, { maximumFractionDigits: 12 })
   }
 
   return result;
