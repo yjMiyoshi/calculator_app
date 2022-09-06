@@ -404,7 +404,6 @@ const calculate = (expression) => {
     if (resultStr.indexOf('e') != -1) {
       result = result.toPrecision(8);
     }
-
     // 小数点より左側の桁数が13桁以上の場合
     else if (numDigitsOverPeriod >= 13) {
       result = result.toPrecision(8);
@@ -415,6 +414,10 @@ const calculate = (expression) => {
         result = result.toPrecision(12);
       }
     }
+
+    // 数値変換し 小数点以下0切り捨て
+    result = Number(result);
+    result = result.toLocaleString(undefined, { maximumFractionDigits: 3 })
   }
 
   return result;

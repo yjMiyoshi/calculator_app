@@ -278,6 +278,7 @@ h1 {
   /* セル間の隙間を指定 */
   border-collapse: collapse;
   border-spacing: 0;
+  /* ボタン幅を等しくする */
   table-layout: fixed;
   width: 100%;
 }
@@ -315,6 +316,7 @@ h1 {
 .color3 {
   color: rgb(112, 117, 122);
   background-color: rgb(218, 220, 224);
+  border: 1px solid rgb(255, 255, 255);
 }
 
 .color4 {
@@ -356,4 +358,15 @@ h1 {
   .sc-calc {
     display: table-cell;
   }
+
+  .td-1 {
+    /* (416px -30px) / 2 の幅*/
+    max-width: 193px;
+  }
+
+  .td-3 {
+    /* (416px -30px) / 2 の幅*/
+    max-width: 193px;
+  }
+
 }
