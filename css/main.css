@@ -1,4 +1,20 @@
 @charset "UTF-8";
+.l_block {
+  display: block;
+}
+
+.l_inline_block {
+  display: inline-block;
+}
+
+.l_inline {
+  display: inline;
+}
+
+.l_flex {
+  display: flex;
+}
+
 /* 関数電卓非表示 ----------------------------------------------- */
 * {
   /* padding と border を幅と高さに含める */
@@ -77,7 +93,6 @@ h1 {
 
 .history {
   height: 20px;
-  display: flex;
   justify-content: space-between;
 }
 
@@ -90,11 +105,6 @@ h1 {
 
 .his {
   position: absolute;
-}
-
-.icon-1 {
-  color: #70757a;
-  font-size: 22px;
 }
 
 #modal {
@@ -122,6 +132,11 @@ h1 {
   height: 100%;
 }
 
+.icon-1 {
+  color: #70757a;
+  font-size: 22px;
+}
+
 .icon-2 {
   display: block;
   height: 54px;
@@ -138,7 +153,6 @@ h1 {
   position: relative;
   height: 32px;
   margin-top: 6px;
-  display: flex;
   text-align: right;
   overflow: hidden;
 }

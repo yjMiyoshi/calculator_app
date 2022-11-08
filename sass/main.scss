@@ -1,3 +1,10 @@
+// function
+@import 'function/basic.scss';
+
+// layout
+@import 'layout/l_display.scss';
+@import 'layout/l_flex.scss';
+
 /* 関数電卓非表示 ----------------------------------------------- */
 
 * {
@@ -6,7 +13,7 @@
     /* カーソル設定 */
     cursor: default;
     /* タップ時に青く光るのを透明にして消す */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: colors(black_0);
 }
 
 input {
@@ -70,14 +77,13 @@ h1 {
 
 .panel {
     padding: 10px 16px 0 10px;
-    border: 1px solid rgb(218, 220, 224);
+    border: 1px solid colors(gray_2);
     border-radius: 8px;
     height: 80px;
 }
 
 .history {
     height: 20px;
-    display: flex;
     justify-content: space-between;
 }
 
@@ -85,17 +91,11 @@ h1 {
     height: 13px;
     margin-top: 3px;
     font-size: 13px;
-    color: rgb(112, 117, 122);
+    color: colors(gray_1);
 }
 
 .his {
     position: absolute;
-}
-
-
-.icon-1 {
-    color: rgb(112, 117, 122);
-    font-size: 22px;
 }
 
 #modal {
@@ -109,10 +109,10 @@ h1 {
     max-height: 346px;
     z-index: 3;
     text-align: center;
-    background-color: rgb(255, 255, 255);
-    color: rgb(77, 81, 86);
+    background-color: colors(white);
+    color: colors(gray_3);
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.28) 0 1px 4px 0;
+    box-shadow: colors(black_28) 0 1px 4px 0;
     font-size: 16px;
 }
 
@@ -123,6 +123,11 @@ h1 {
     height: 100%;
 }
 
+.icon-1 {
+    color: colors(gray_1);
+    font-size: 22px;
+}
+
 .icon-2 {
     display: block;
     height: 54px;
@@ -131,7 +136,7 @@ h1 {
     top: 0;
     left: 0;
     padding: 16px;
-    color: rgb(26, 115, 232);
+    color: colors(blue_1);
     font-size: 22px;
 }
 
@@ -139,7 +144,6 @@ h1 {
     position: relative;
     height: 32px;
     margin-top: 6px;
-    display: flex;
     text-align: right;
     overflow: hidden;
 }
@@ -150,7 +154,7 @@ h1 {
     width: 100%;
     text-align: right;
     font-size: 32px;
-    color: rgb(77, 81, 86);
+    color: colors(gray_3);
     /* 改行をさせない */
     white-space: nowrap;
     overflow-x: scroll;
@@ -164,7 +168,7 @@ h1 {
 #modal-text {
     padding: 41px;
     line-height: 20px;
-    color: rgb(112, 117, 122);
+    color: colors(gray_1);
 }
 
 #history-table {
@@ -192,7 +196,7 @@ h1 {
 }
 
 .modal-border {
-    border-top: 1px solid rgb(218, 220, 224);
+    border-top: 1px solid colors(gray_2);
     padding-top: 16px !important;
 }
 
@@ -204,8 +208,8 @@ h1 {
     line-height: 14px;
     padding: 6px 12px;
     font-size: 14px;
-    color: rgb(26, 115, 232);
-    border: 1px solid rgb(218, 220, 224);
+    color: colors(blue_1);
+    border: 1px solid colors(gray_2);
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
@@ -223,7 +227,7 @@ h1 {
     line-height: 20px;
     padding: 1px;
     font-size: 20px;
-    color: rgb(112, 117, 122);
+    color: colors(gray_1);
     text-align: center;
     vertical-align: middle;
 }
@@ -236,8 +240,8 @@ h1 {
     line-height: 14px;
     padding: 6px 12px;
     font-size: 14px;
-    color: rgb(26, 115, 232);
-    border: 1px solid rgb(218, 220, 224);
+    color: colors(blue_1);
+    border: 1px solid colors(gray_2);
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
@@ -254,15 +258,15 @@ h1 {
     line-height: 14px;
     padding: 6px 12px;
     font-size: 14px;
-    color: rgb(218, 220, 224);
-    background-color: rgb(248, 249, 250);
+    color: colors(gray_2);
+    background-color: colors(white_1);
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
 }
 
 .click-preview {
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.30);
+    box-shadow: inset 0 1px 2px colors(black_30);
     border: 1px solid #4285f4;
 }
 
@@ -271,7 +275,7 @@ h1 {
     width: 100%;
     font-size: 32px;
     text-align: right;
-    color: rgb(77, 81, 86);
+    color: colors(gray_3);
     text-align: right;
 }
 
@@ -296,39 +300,39 @@ h1 {
 }
 
 .color1 {
-    color: rgb(32, 33, 36);
-    background-color: rgb(218, 220, 224);
-    border: 1px solid rgb(255, 255, 255);
+    color: colors(gray_4);
+    background-color: colors(gray_2);
+    border: 1px solid colors(white);
 
     &:active {
-        border: 1px solid rgb(218, 220, 224);
+        border: 1px solid colors(gray_2);
     }
 }
 
 .color2 {
-    color: rgb(32, 33, 36);
-    background-color: rgb(241, 243, 244);
-    border: 1px solid rgb(255, 255, 255);
+    color: colors(gray_4);
+    background-color: colors(white_2);
+    border: 1px solid colors(white);
 
     &:active {
-        border: 1px solid rgb(218, 220, 224);
+        border: 1px solid colors(gray_2);
     }
 }
 
 .color3 {
-    color: rgb(112, 117, 122);
-    background-color: rgb(218, 220, 224);
-    border: 1px solid rgb(255, 255, 255);
+    color: colors(gray_1);
+    background-color: colors(gray_2);
+    border: 1px solid colors(white);
 }
 
 .color4 {
     height: 36px !important;
     margin: 4px !important;
-    background-color: rgb(66, 133, 244);
-    color: rgb(255, 255, 255);
+    background-color: colors(blue_2);
+    color: colors(white);
 
     &:active {
-        box-shadow: 0 1px 2px 0 rgba(66, 133, 244, .45), 0 3px 6px 2px rgba(66, 133, 244, .3);
+        box-shadow: 0 1px 2px 0 colors(shadow_1), 0 3px 6px 2px colors(shadow_2);
     }
 }
 

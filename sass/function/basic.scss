@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+$colors: (
+    white: rgb(255, 255, 255),
+    white_1: rgb(248, 249, 250),
+    white_2: rgb(241, 243, 244),
+    blue_1: rgb(26, 115, 232),
+    blue_2: rgb(66, 133, 244),
+    gray_1: rgb(112, 117, 122),
+    gray_2: rgb(218, 220, 224),
+    gray_3: rgb(77, 81, 86),
+    gray_4: rgb(32, 33, 36),
+    black_0: rgba(0, 0, 0, 0),
+    black_28: rgba(0, 0, 0, .28),
+    black_30: rgba(0, 0, 0, .30),
+    shadow_1: rgba(66, 133, 244, .45),
+    shadow_2: rgba(66, 133, 244, .3),
+);
+
+@function colors($key) {
+    @return map-get($colors, $key);
+}
