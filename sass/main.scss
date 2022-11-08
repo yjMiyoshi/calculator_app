@@ -1,372 +1,375 @@
 /* 関数電卓非表示 ----------------------------------------------- */
 
 * {
-  /* padding と border を幅と高さに含める */
-  box-sizing: border-box;
-  /* カーソル設定 */
-  cursor: default;
-  /* タップ時に青く光るのを透明にして消す */
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* padding と border を幅と高さに含める */
+    box-sizing: border-box;
+    /* カーソル設定 */
+    cursor: default;
+    /* タップ時に青く光るのを透明にして消す */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 input {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  font: inherit;
-  outline: none;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    outline: none;
 }
 
 .btn-tr {
-  height: 44px;
-}
+    height: 44px;
 
-.btn-tr td {
-  height: 44px;
+    td {
+        height: 44px;
+    }
+
+    td>div {
+        height: 38px;
+        margin: 2px;
+        cursor: pointer;
+        line-height: 34px;
+        border-radius: 4px;
+    }
 }
 
 td {
-  padding: 0;
+    padding: 0;
 }
 
 html {
-  height: 100%;
-  max-height: 100%;
+    height: 100%;
+    max-height: 100%;
 }
 
 body {
-  margin: 0%;
-  height: 100%;
-  max-height: 100%;
-  font-family: "Helvetica Neue", "Roboto", Arial, sans-serif;
-  font-size: 15px;
+    margin: 0%;
+    height: 100%;
+    max-height: 100%;
+    font-family: "Helvetica Neue", "Roboto", Arial, sans-serif;
+    font-size: 15px;
 }
 
 h1 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .main {
-  position: relative;
-  padding: 16px 0 12px 0;
-  margin: 0 12px 12px 12px;
-  max-height: 100%;
+    position: relative;
+    padding: 16px 0 12px 0;
+    margin: 0 12px 12px 12px;
+    max-height: 100%;
 }
 
 .panel {
-  padding: 10px 16px 0 10px;
-  border: 1px solid rgb(218, 220, 224);
-  border-radius: 8px;
-  height: 80px;
+    padding: 10px 16px 0 10px;
+    border: 1px solid rgb(218, 220, 224);
+    border-radius: 8px;
+    height: 80px;
 }
 
 .history {
-  height: 20px;
-  display: flex;
-  justify-content: space-between;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 #prev-history {
-  height: 13px;
-  margin-top: 3px;
-  font-size: 13px;
-  color: rgb(112, 117, 122);
+    height: 13px;
+    margin-top: 3px;
+    font-size: 13px;
+    color: rgb(112, 117, 122);
 }
 
 .his {
-  position: absolute;
+    position: absolute;
 }
 
 
 .icon-1 {
-  color: rgb(112, 117, 122);
-  font-size: 22px;
+    color: rgb(112, 117, 122);
+    font-size: 22px;
 }
 
 #modal {
-  display: none;
-  position: absolute;
-  top: 11px;
-  left: -1px;
-  width: 280px;
-  max-width: 100%;
-  min-height: 104px;
-  max-height: 346px;
-  z-index: 3;
-  text-align: center;
-  background-color: rgb(255, 255, 255);
-  color: rgb(77, 81, 86);
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.28) 0 1px 4px 0;
-  font-size: 16px;
+    display: none;
+    position: absolute;
+    top: 11px;
+    left: -1px;
+    width: 280px;
+    max-width: 100%;
+    min-height: 104px;
+    max-height: 346px;
+    z-index: 3;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(77, 81, 86);
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.28) 0 1px 4px 0;
+    font-size: 16px;
 }
 
 /* position 指定用の div クラス */
 .modal-position {
-  position: relative;
-  width: 100%;
-  height: 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .icon-2 {
-  display: block;
-  height: 54px;
-  position: absolute;
-  text-align: left;
-  top: 0;
-  left: 0;
-  padding: 16px;
-  color: rgb(26, 115, 232);
-  font-size: 22px;
+    display: block;
+    height: 54px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    left: 0;
+    padding: 16px;
+    color: rgb(26, 115, 232);
+    font-size: 22px;
 }
 
 .preview {
-  position: relative;
-  height: 32px;
-  margin-top: 6px;
-  display: flex;
-  text-align: right;
-  overflow: hidden;
+    position: relative;
+    height: 32px;
+    margin-top: 6px;
+    display: flex;
+    text-align: right;
+    overflow: hidden;
 }
 
 #preview {
-  position: absolute;
-  display: block;
-  width: 100%;
-  text-align: right;
-  font-size: 32px;
-  color: rgb(77, 81, 86);
-  /* 改行をさせない */
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
+    position: absolute;
+    display: block;
+    width: 100%;
+    text-align: right;
+    font-size: 32px;
+    color: rgb(77, 81, 86);
+    /* 改行をさせない */
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
 
-/* Scroll bar 非表示 */
-#preview::-webkit-scrollbar {
-  display: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 #modal-text {
-  padding: 41px;
-  line-height: 20px;
-  color: rgb(112, 117, 122);
+    padding: 41px;
+    line-height: 20px;
+    color: rgb(112, 117, 122);
 }
 
 #history-table {
-  display: none;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  padding: 0 16px 16px 16px;
-  max-height: 291px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    padding: 0 16px 16px 16px;
+    max-height: 291px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .table-1+.table-1 {
-  margin-top: 16px;
+    margin-top: 16px;
 }
 
 .table-1 {
-  height: 32px;
-  max-width: 248px;
-  border-collapse: separate;
-  border-spacing: 0;
-  text-align: left;
-  table-layout: auto;
+    height: 32px;
+    max-width: 248px;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    table-layout: auto;
 }
 
 .modal-border {
-  border-top: 1px solid rgb(218, 220, 224);
-  padding-top: 16px !important;
+    border-top: 1px solid rgb(218, 220, 224);
+    padding-top: 16px !important;
 }
 
 .td-1 {
-  display: table-cell;
-  height: 32px;
-  /* (248px -30px) / 2 の幅*/
-  max-width: 109px;
-  line-height: 14px;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: rgb(26, 115, 232);
-  border: 1px solid rgb(218, 220, 224);
-  border-radius: 4px;
-  text-align: center;
-  vertical-align: middle;
-  /* 要素より長い文字列を省略する */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+    display: table-cell;
+    height: 32px;
+    /* (248px -30px) / 2 の幅*/
+    max-width: 109px;
+    line-height: 14px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: rgb(26, 115, 232);
+    border: 1px solid rgb(218, 220, 224);
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    /* 要素より長い文字列を省略する */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .td-2 {
-  display: table-cell;
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
-  line-height: 20px;
-  padding: 1px;
-  font-size: 20px;
-  color: rgb(112, 117, 122);
-  text-align: center;
-  vertical-align: middle;
+    display: table-cell;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    line-height: 20px;
+    padding: 1px;
+    font-size: 20px;
+    color: rgb(112, 117, 122);
+    text-align: center;
+    vertical-align: middle;
 }
 
 .td-3 {
-  display: table-cell;
-  height: 32px;
-  /* (248px -30px) / 2 の幅*/
-  max-width: 109px;
-  line-height: 14px;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: rgb(26, 115, 232);
-  border: 1px solid rgb(218, 220, 224);
-  border-radius: 4px;
-  text-align: center;
-  vertical-align: middle;
-  /* 要素より長い文字列を省略する */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+    display: table-cell;
+    height: 32px;
+    /* (248px -30px) / 2 の幅*/
+    max-width: 109px;
+    line-height: 14px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: rgb(26, 115, 232);
+    border: 1px solid rgb(218, 220, 224);
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    /* 要素より長い文字列を省略する */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .td-4 {
-  pointer-events: none;
-  display: table-cell;
-  height: 32px;
-  line-height: 14px;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: rgb(218, 220, 224);
-  background-color: rgb(248, 249, 250);
-  border-radius: 4px;
-  text-align: center;
-  vertical-align: middle;
+    pointer-events: none;
+    display: table-cell;
+    height: 32px;
+    line-height: 14px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: rgb(218, 220, 224);
+    background-color: rgb(248, 249, 250);
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .click-preview {
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.30);
-  border: 1px solid #4285f4;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.30);
+    border: 1px solid #4285f4;
 }
 
 .expression {
-  display: block;
-  width: 100%;
-  font-size: 32px;
-  text-align: right;
-  color: rgb(77, 81, 86);
-  text-align: right;
+    display: block;
+    width: 100%;
+    font-size: 32px;
+    text-align: right;
+    color: rgb(77, 81, 86);
+    text-align: right;
 }
 
 .calc-buttons {
-  margin-top: 8px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
+    margin-top: 8px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
-.calc-buttons table {
-  /* セル間の隙間を指定 */
-  border-collapse: collapse;
-  border-spacing: 0;
-  /* ボタン幅を等しくする */
-  table-layout: fixed;
-  width: 100%;
-}
+    table {
+        /* セル間の隙間を指定 */
+        border-collapse: collapse;
+        border-spacing: 0;
+        /* ボタン幅を等しくする */
+        table-layout: fixed;
+        width: 100%;
+    }
 
-.btn-tr td>div {
-  height: 38px;
-  margin: 2px;
-  cursor: pointer;
-  line-height: 34px;
-  border-radius: 4px;
-}
-
-.calc-buttons td {
-  height: 36px;
-  text-align: center;
+    td {
+        height: 36px;
+        text-align: center;
+    }
 }
 
 .color1 {
-  color: rgb(32, 33, 36);
-  background-color: rgb(218, 220, 224);
-  border: 1px solid rgb(255, 255, 255);
+    color: rgb(32, 33, 36);
+    background-color: rgb(218, 220, 224);
+    border: 1px solid rgb(255, 255, 255);
+
+    &:active {
+        border: 1px solid rgb(218, 220, 224);
+    }
 }
 
 .color2 {
-  color: rgb(32, 33, 36);
-  background-color: rgb(241, 243, 244);
-  border: 1px solid rgb(255, 255, 255);
-}
+    color: rgb(32, 33, 36);
+    background-color: rgb(241, 243, 244);
+    border: 1px solid rgb(255, 255, 255);
 
-.color1:active,
-.color2:active {
-  border: 1px solid rgb(218, 220, 224);
+    &:active {
+        border: 1px solid rgb(218, 220, 224);
+    }
 }
 
 .color3 {
-  color: rgb(112, 117, 122);
-  background-color: rgb(218, 220, 224);
-  border: 1px solid rgb(255, 255, 255);
+    color: rgb(112, 117, 122);
+    background-color: rgb(218, 220, 224);
+    border: 1px solid rgb(255, 255, 255);
 }
 
 .color4 {
-  height: 36px !important;
-  margin: 4px !important;
-  background-color: rgb(66, 133, 244);
-  color: rgb(255, 255, 255);
+    height: 36px !important;
+    margin: 4px !important;
+    background-color: rgb(66, 133, 244);
+    color: rgb(255, 255, 255);
+
+    &:active {
+        box-shadow: 0 1px 2px 0 rgba(66, 133, 244, .45), 0 3px 6px 2px rgba(66, 133, 244, .3);
+    }
 }
 
-.color4:active {
-  box-shadow: 0 1px 2px 0 rgba(66, 133, 244, .45), 0 3px 6px 2px rgba(66, 133, 244, .3);
-}
 
 .font1 {
-  font-size: 20px;
-  font-weight: 700;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .font2 {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .font3 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 /* 関数電卓 scientific calculator */
 .sc-calc {
-  display: none;
+    display: none;
 }
 
 /* 関数電卓表示 ----------------------------------------------- */
 /* Google 検索時の仕様に合わせ break point 指定 */
 @media (min-width: 460px) {
-  #modal {
-    width: 448px;
-  }
+    #modal {
+        width: 448px;
+    }
 
-  .sc-calc {
-    display: table-cell;
-  }
+    .sc-calc {
+        display: table-cell;
+    }
 
-  .td-1 {
-    /* (416px -30px) / 2 の幅*/
-    max-width: 193px;
-  }
+    .td-1 {
+        /* (416px -30px) / 2 の幅*/
+        max-width: 193px;
+    }
 
-  .td-3 {
-    /* (416px -30px) / 2 の幅*/
-    max-width: 193px;
-  }
+    .td-3 {
+        /* (416px -30px) / 2 の幅*/
+        max-width: 193px;
+    }
 
 }

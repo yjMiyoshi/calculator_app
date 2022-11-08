@@ -31,6 +31,14 @@ input {
   height: 44px;
 }
 
+.btn-tr td > div {
+  height: 38px;
+  margin: 2px;
+  cursor: pointer;
+  line-height: 34px;
+  border-radius: 4px;
+}
+
 td {
   padding: 0;
 }
@@ -148,7 +156,6 @@ h1 {
   overflow-y: hidden;
 }
 
-/* Scroll bar 非表示 */
 #preview::-webkit-scrollbar {
   display: none;
 }
@@ -282,14 +289,6 @@ h1 {
   width: 100%;
 }
 
-.btn-tr td > div {
-  height: 38px;
-  margin: 2px;
-  cursor: pointer;
-  line-height: 34px;
-  border-radius: 4px;
-}
-
 .calc-buttons td {
   height: 36px;
   text-align: center;
@@ -301,13 +300,16 @@ h1 {
   border: 1px solid white;
 }
 
+.color1:active {
+  border: 1px solid #dadce0;
+}
+
 .color2 {
   color: #202124;
   background-color: #f1f3f4;
   border: 1px solid white;
 }
 
-.color1:active,
 .color2:active {
   border: 1px solid #dadce0;
 }

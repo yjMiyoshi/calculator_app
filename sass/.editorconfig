@@ -1,0 +1,16 @@
+root = true
+
+
+[*]
+# tabキーを押したときtabにするかspaceにするか
+indent_style = space
+# インデントを半角スペースいくつ分にするか
+indent_size = 4
+# 改行コードの種類
+end_of_line = lf
+# 文字コード
+charset = utf-8
+# 行末の空白を削除するかどうか
+trim_trailing_whitespace = true
+# ファイルの最終行に空行を入れるかどうか
+insert_final_newline = true
