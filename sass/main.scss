@@ -185,19 +185,6 @@ h1 {
     overflow-x: hidden;
 }
 
-.table-1+.table-1 {
-    margin-top: 1.6rem;
-}
-
-.table-1 {
-    height: 3.2rem;
-    max-width: 24.8rem;
-    border-collapse: separate;
-    border-spacing: 0;
-    text-align: left;
-    table-layout: auto;
-}
-
 .modal-border {
     border-top: .1rem solid colors(gray_2);
     padding-top: 1.6rem !important;
@@ -293,7 +280,7 @@ h1 {
     display: none;
 }
 
-/* 関数電卓表示 ----------------------------------------------- */
+/* sp 表示 ----------------------------------------------- */
 /* Google 検索時の仕様に合わせ break point 指定 */
 @media (min-width: 46rem) {
     #modal {
