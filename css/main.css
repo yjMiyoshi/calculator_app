@@ -15,6 +15,86 @@
   display: flex;
 }
 
+.l_table_cell {
+  display: table-cell;
+}
+
+.td-1 {
+  display: table-cell;
+  height: 3.2rem;
+  /* (24.8rem -3rem) / 2 の幅*/
+  max-width: 10.9rem;
+  line-height: 1.4rem;
+  padding: .6rem 1.2rem;
+  font-size: 1.4rem;
+  color: #1a73e8;
+  border: 0.1rem solid #dadce0;
+  border-radius: .4rem;
+  text-align: center;
+  vertical-align: middle;
+  /* 要素より長い文字列を省略する */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.td-2 {
+  display: table-cell;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
+  line-height: 2rem;
+  padding: .1rem;
+  font-size: 2rem;
+  color: #70757a;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.td-3 {
+  display: table-cell;
+  height: 3.2rem;
+  /* (24.8rem -3rem) / 2 の幅*/
+  max-width: 10.9rem;
+  line-height: 1.4rem;
+  padding: .6rem 1.2rem;
+  font-size: 1.4rem;
+  color: #1a73e8;
+  border: 0.1rem solid #dadce0;
+  border-radius: .4rem;
+  text-align: center;
+  vertical-align: middle;
+  /* 要素より長い文字列を省略する */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.td-4 {
+  pointer-events: none;
+  display: table-cell;
+  height: 3.2rem;
+  line-height: 1.4rem;
+  padding: .6rem 1.2rem;
+  font-size: 1.4rem;
+  color: #dadce0;
+  background-color: #f8f9fa;
+  border-radius: .4rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media (min-width: 46rem) {
+  .td-1 {
+    /* (41.6rem -3rem) / 2 の幅*/
+    max-width: 19.3rem;
+  }
+  .td-3 {
+    /* (41.6rem -3rem) / 2 の幅*/
+    max-width: 19.3rem;
+  }
+}
+
 html {
   font-size: 62.5%;
   font-size: calc(1em * .625);
@@ -216,71 +296,6 @@ h1 {
   padding-top: 1.6rem !important;
 }
 
-.td-1 {
-  display: table-cell;
-  height: 3.2rem;
-  /* (24.8rem -3rem) / 2 の幅*/
-  max-width: 10.9rem;
-  line-height: 1.4rem;
-  padding: .6rem 1.2rem;
-  font-size: 1.4rem;
-  color: #1a73e8;
-  border: 0.1rem solid #dadce0;
-  border-radius: .4rem;
-  text-align: center;
-  vertical-align: middle;
-  /* 要素より長い文字列を省略する */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.td-2 {
-  display: table-cell;
-  width: 3rem;
-  min-width: 3rem;
-  height: 3rem;
-  line-height: 2rem;
-  padding: .1rem;
-  font-size: 2rem;
-  color: #70757a;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.td-3 {
-  display: table-cell;
-  height: 3.2rem;
-  /* (24.8rem -3rem) / 2 の幅*/
-  max-width: 10.9rem;
-  line-height: 1.4rem;
-  padding: .6rem 1.2rem;
-  font-size: 1.4rem;
-  color: #1a73e8;
-  border: 0.1rem solid #dadce0;
-  border-radius: .4rem;
-  text-align: center;
-  vertical-align: middle;
-  /* 要素より長い文字列を省略する */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.td-4 {
-  pointer-events: none;
-  display: table-cell;
-  height: 3.2rem;
-  line-height: 1.4rem;
-  padding: .6rem 1.2rem;
-  font-size: 1.4rem;
-  color: #dadce0;
-  background-color: #f8f9fa;
-  border-radius: .4rem;
-  text-align: center;
-  vertical-align: middle;
-}
-
 .click-preview {
   box-shadow: inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   border: .1rem solid #4285f4;
@@ -378,13 +393,5 @@ h1 {
   }
   .sc-calc {
     display: table-cell;
-  }
-  .td-1 {
-    /* (41.6rem -3rem) / 2 の幅*/
-    max-width: 19.3rem;
-  }
-  .td-3 {
-    /* (41.6rem -3rem) / 2 の幅*/
-    max-width: 19.3rem;
   }
 }

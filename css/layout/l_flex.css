@@ -1,3 +1,7 @@
 .l_flex {
   display: flex;
 }
+
+.l_table_cell {
+  display: table-cell;
+}
