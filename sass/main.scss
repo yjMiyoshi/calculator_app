@@ -7,6 +7,9 @@
 @import 'module/history_table.scss';
 @import 'base/normalize.scss';
 
+// mixin
+@import 'mixin/button.scss';
+
 html { font-size: 62.5%; font-size: calc(1em * .625); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 /* 関数電卓非表示 ----------------------------------------------- */
@@ -225,13 +228,8 @@ h1 {
     }
 }
 
-@mixin color($color, $bg-color) {
-    color: $color;
-    background-color: $bg-color;
-}
-
 .color-1 {
-    @include color($color: colors(gray_4), $bg-color: colors(gray_2));
+    @include btn($color: colors(gray_4), $bg-color: colors(gray_2));
     border: .1rem solid colors(white);
 
     &:active {
@@ -240,7 +238,7 @@ h1 {
 }
 
 .color-2 {
-    @include color($color: colors(gray_4), $bg-color: colors(white_2));
+    @include btn($color: colors(gray_4), $bg-color: colors(white_2));
     border: .1rem solid colors(white);
 
     &:active {
@@ -249,20 +247,19 @@ h1 {
 }
 
 .color-3 {
-    @include color($color: colors(gray_1), $bg-color: colors(gray_2));
+    @include btn($color: colors(gray_1), $bg-color: colors(gray_2));
     border: .1rem solid colors(white);
 }
 
 .color-4 {
     // height: 3.6rem !important;
     // margin: .4rem !important;
-    @include color($color: colors(white), $bg-color: colors(blue_2));
+    @include btn($color: colors(white), $bg-color: colors(blue_2));
 
     &:active {
         box-shadow: 0 .1rem .2rem 0 colors(shadow_1), 0 .3rem .6rem .2rem colors(shadow_2);
     }
 }
-
 
 .font-1 {
     font-size: 2rem;
