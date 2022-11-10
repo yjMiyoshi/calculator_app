@@ -77,6 +77,8 @@
   vertical-align: middle;
 }
 
+/* pc 表示 ----------------------------------------------- */
+/* Google 検索時の仕様に合わせ break point 指定 */
 @media (min-width: 46rem) {
   .td-1 {
     /* (41.6rem -3rem) / 2 の幅*/

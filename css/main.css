@@ -97,6 +97,8 @@
   vertical-align: middle;
 }
 
+/* pc 表示 ----------------------------------------------- */
+/* Google 検索時の仕様に合わせ break point 指定 */
 @media (min-width: 46rem) {
   .td-1 {
     /* (41.6rem -3rem) / 2 の幅*/
@@ -445,7 +447,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 関数電卓非表示 ----------------------------------------------- */
+/* sp表示 ----------------------------------------------- */
 * {
   /* padding と border を幅と高さに含める */
   box-sizing: border-box;
@@ -687,6 +689,8 @@ h1 {
 }
 
 .color-4 {
+  height: 3.6rem !important;
+  margin: .4rem !important;
   color: white;
   background-color: #4285f4;
 }
@@ -720,6 +724,6 @@ h1 {
     width: 44.8rem;
   }
   .sc-calc {
-    display: table-cell;
+    display: table;
   }
 }
