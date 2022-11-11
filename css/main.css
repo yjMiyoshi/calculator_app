@@ -662,40 +662,40 @@ h1 {
   text-align: center;
 }
 
-.color-1 {
+.btn-1 {
   color: #202124;
   background-color: #dadce0;
   border: 0.1rem solid white;
 }
 
-.color-1:active {
+.btn-1:active {
   border: 0.1rem solid #dadce0;
 }
 
-.color-2 {
+.btn-2 {
   color: #202124;
   background-color: #f1f3f4;
   border: 0.1rem solid white;
 }
 
-.color-2:active {
+.btn-2:active {
   border: 0.1rem solid #dadce0;
 }
 
-.color-3 {
+.btn-3 {
   color: #70757a;
   background-color: #dadce0;
   border: 0.1rem solid white;
 }
 
-.color-4 {
+.btn-4 {
   height: 3.6rem !important;
   margin: .4rem !important;
   color: white;
   background-color: #4285f4;
 }
 
-.color-4:active {
+.btn-4:active {
   box-shadow: 0 0.1rem 0.2rem 0 rgba(66, 133, 244, 0.45), 0 0.3rem 0.6rem 0.2rem rgba(66, 133, 244, 0.3);
 }
 
