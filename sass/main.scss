@@ -1,14 +1,20 @@
+// base
+@import 'base/normalize.scss';
+
 // function
 @import 'function/colors.scss';
 
 // layout
 @import 'layout/l_display.scss';
 @import 'layout/l_flex.scss';
-@import 'module/history_table.scss';
-@import 'base/normalize.scss';
 
 // mixin
 @import 'mixin/button.scss';
+
+// module
+@import 'module/history_table.scss';
+@import 'module/button.scss';
+@import 'module/font.scss';
 
 html {
     font-size: 62.5%;
@@ -234,72 +240,6 @@ h1 {
         text-align: center;
     }
 }
-
-// ボタンの種類
-/*
-
-*/
-
-// 1. 背景：灰色・文字：黒
-.btn-1 {
-    @include btn($color: colors(gray_4), $bg-color: colors(gray_2));
-    border: .1rem solid colors(white);
-
-    &:active {
-        border: .1rem solid colors(gray_2);
-    }
-}
-
-// 2. 背景：灰色・文字：薄い灰色
-.btn-2 {
-    @include btn($color: colors(gray_1), $bg-color: colors(gray_2));
-    border: .1rem solid colors(white);
-}
-
-// 3. 背景：薄い灰色・文字：黒色
-.btn-3 {
-    @include btn($color: colors(gray_4), $bg-color: colors(white_2));
-    border: .1rem solid colors(white);
-
-    &:active {
-        border: .1rem solid colors(gray_2);
-    }
-}
-
-// 4. 背景：青色・文字：白色
-.btn-4 {
-    height: 3.6rem !important;
-    margin: .4rem !important;
-    @include btn($color: colors(white), $bg-color: colors(blue_2));
-
-    &:active {
-        box-shadow: 0 .1rem .2rem 0 colors(shadow_1), 0 .3rem .6rem .2rem colors(shadow_2);
-    }
-}
-
-
-.font-s10 {
-    font-size: 1rem;
-}
-
-.font-s14 {
-    font-size: 1.4rem;
-}
-
-.font-s15 {
-    font-size: 1.5rem;
-}
-
-.font-s20 {
-    font-size: 2rem;
-}
-
-.font-w700 {
-    font-weight: 700;
-}
-
-
-
 
 /* 関数電卓 scientific calculator */
 .sc-calc {
