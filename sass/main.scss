@@ -47,6 +47,8 @@ input {
 
     td {
         height: 4.4rem;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
     }
 
     td>div {
@@ -233,6 +235,12 @@ h1 {
     }
 }
 
+// ボタンの種類
+/*
+
+*/
+
+// 1. 背景：灰色・文字：黒
 .btn-1 {
     @include btn($color: colors(gray_4), $bg-color: colors(gray_2));
     border: .1rem solid colors(white);
@@ -242,7 +250,14 @@ h1 {
     }
 }
 
+// 2. 背景：灰色・文字：薄い灰色
 .btn-2 {
+    @include btn($color: colors(gray_1), $bg-color: colors(gray_2));
+    border: .1rem solid colors(white);
+}
+
+// 3. 背景：薄い灰色・文字：黒色
+.btn-3 {
     @include btn($color: colors(gray_4), $bg-color: colors(white_2));
     border: .1rem solid colors(white);
 
@@ -251,11 +266,7 @@ h1 {
     }
 }
 
-.btn-3 {
-    @include btn($color: colors(gray_1), $bg-color: colors(gray_2));
-    border: .1rem solid colors(white);
-}
-
+// 4. 背景：青色・文字：白色
 .btn-4 {
     height: 3.6rem !important;
     margin: .4rem !important;
@@ -266,18 +277,29 @@ h1 {
     }
 }
 
-.font-1 {
-    font-size: 2rem;
-    font-weight: 700;
+
+.font-s10 {
+    font-size: 1rem;
 }
 
-.font-2 {
+.font-s14 {
     font-size: 1.4rem;
 }
 
-.font-3 {
+.font-s15 {
+    font-size: 1.5rem;
+}
+
+.font-s20 {
     font-size: 2rem;
 }
+
+.font-w700 {
+    font-weight: 700;
+}
+
+
+
 
 /* 関数電卓 scientific calculator */
 .sc-calc {

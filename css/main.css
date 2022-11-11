@@ -477,6 +477,8 @@ input {
 
 .btn-tr td {
   height: 4.4rem;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
 }
 
 .btn-tr td > div {
@@ -662,6 +664,9 @@ h1 {
   text-align: center;
 }
 
+/*
+
+*/
 .btn-1 {
   color: #202124;
   background-color: #dadce0;
@@ -673,19 +678,19 @@ h1 {
 }
 
 .btn-2 {
+  color: #70757a;
+  background-color: #dadce0;
+  border: 0.1rem solid white;
+}
+
+.btn-3 {
   color: #202124;
   background-color: #f1f3f4;
   border: 0.1rem solid white;
 }
 
-.btn-2:active {
+.btn-3:active {
   border: 0.1rem solid #dadce0;
-}
-
-.btn-3 {
-  color: #70757a;
-  background-color: #dadce0;
-  border: 0.1rem solid white;
 }
 
 .btn-4 {
@@ -699,17 +704,24 @@ h1 {
   box-shadow: 0 0.1rem 0.2rem 0 rgba(66, 133, 244, 0.45), 0 0.3rem 0.6rem 0.2rem rgba(66, 133, 244, 0.3);
 }
 
-.font-1 {
-  font-size: 2rem;
-  font-weight: 700;
+.font-s10 {
+  font-size: 1rem;
 }
 
-.font-2 {
+.font-s14 {
   font-size: 1.4rem;
 }
 
-.font-3 {
+.font-s15 {
+  font-size: 1.5rem;
+}
+
+.font-s20 {
   font-size: 2rem;
+}
+
+.font-w700 {
+  font-weight: 700;
 }
 
 /* 関数電卓 scientific calculator */
