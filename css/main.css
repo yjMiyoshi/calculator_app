@@ -487,6 +487,7 @@ template {
 }
 
 .btn-rad-deg {
+  position: relative;
   color: #202124;
   background-color: #dadce0;
   height: 3.8rem;
@@ -499,22 +500,18 @@ template {
 
 /* width
 ---------------------------------------------------------- */
-.w_33 {
-  width: 33.333333%;
-}
-
 .w_50 {
   width: 50%;
-}
-
-.w_66 {
-  width: 66.666666%;
 }
 
 /* font-size
 ---------------------------------------------------------- */
 .font-s10 {
-  font-size: 1.0rem;
+  font-size: 1rem;
+}
+
+.font-s13 {
+  font-size: 1.3rem;
 }
 
 .font-s14 {
@@ -526,11 +523,15 @@ template {
 }
 
 .font-s20 {
-  font-size: 2.0rem;
+  font-size: 2rem;
 }
 
 /* font-weight
 ---------------------------------------------------------- */
+.font-w400 {
+  font-weight: 400;
+}
+
 .font-w700 {
   font-weight: 700;
 }
@@ -539,6 +540,18 @@ template {
 ---------------------------------------------------------- */
 .color_g1 {
   color: #70757a;
+}
+
+/* separator
+---------------------------------------------------------- */
+.separator {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 50%;
+  border-left: 1px solid #70757a;
+  transform: translateX(-50%);
 }
 
 /* sp表示 ----------------------------------------------- */
@@ -743,6 +756,7 @@ h1 {
 
 .calc-buttons table {
   /* セル間の隙間を指定 */
+  border-collapse: collapse;
   border-spacing: 0;
   /* ボタン幅を等しくする */
   table-layout: fixed;

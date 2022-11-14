@@ -214,7 +214,7 @@ h1 {
 
     table {
         /* セル間の隙間を指定 */
-        // border-collapse: collapse;
+        border-collapse: collapse;
         border-spacing: 0;
         /* ボタン幅を等しくする */
         table-layout: fixed;

@@ -1,38 +1,38 @@
 .btn-1 {
-  color: colors(gray_4);
-  background-color: colors(gray_2);
+  color: #202124;
+  background-color: #dadce0;
   height: 3.8rem;
   margin: .2rem;
   cursor: pointer;
   line-height: 3.4rem;
   border-radius: .4rem;
-  border: 0.1rem solid colors(white);
+  border: 0.1rem solid white;
 }
 
 .btn-1:active {
-  border: 0.1rem solid colors(gray_2);
+  border: 0.1rem solid #dadce0;
 }
 
 .btn-3 {
-  color: colors(gray_4);
-  background-color: colors(white_2);
+  color: #202124;
+  background-color: #f1f3f4;
   height: 3.8rem;
   margin: .2rem;
   cursor: pointer;
   line-height: 3.4rem;
   border-radius: .4rem;
-  border: 0.1rem solid colors(white);
+  border: 0.1rem solid white;
 }
 
 .btn-3:active {
-  border: 0.1rem solid colors(gray_2);
+  border: 0.1rem solid #dadce0;
 }
 
 .btn-4 {
   height: 3.6rem !important;
   margin: .4rem !important;
-  color: colors(white);
-  background-color: colors(blue_2);
+  color: white;
+  background-color: #4285f4;
   height: 3.8rem;
   margin: .2rem;
   cursor: pointer;
@@ -41,38 +41,35 @@
 }
 
 .btn-4:active {
-  box-shadow: 0 0.1rem 0.2rem 0 colors(shadow_1), 0 0.3rem 0.6rem 0.2rem colors(shadow_2);
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(66, 133, 244, 0.45), 0 0.3rem 0.6rem 0.2rem rgba(66, 133, 244, 0.3);
 }
 
 .btn-rad-deg {
-  color: colors(gray_4);
-  background-color: colors(gray_2);
+  position: relative;
+  color: #202124;
+  background-color: #dadce0;
   height: 3.8rem;
   line-height: 3.4rem;
   margin: .2rem;
   cursor: pointer;
   border-radius: .4rem;
-  border: 0.1rem solid colors(white);
+  border: 0.1rem solid white;
 }
 
 /* width
 ---------------------------------------------------------- */
-.w_33 {
-  width: 33.333333%;
-}
-
 .w_50 {
   width: 50%;
-}
-
-.w_66 {
-  width: 66.666666%;
 }
 
 /* font-size
 ---------------------------------------------------------- */
 .font-s10 {
-  font-size: 1.0rem;
+  font-size: 1rem;
+}
+
+.font-s13 {
+  font-size: 1.3rem;
 }
 
 .font-s14 {
@@ -84,11 +81,15 @@
 }
 
 .font-s20 {
-  font-size: 2.0rem;
+  font-size: 2rem;
 }
 
 /* font-weight
 ---------------------------------------------------------- */
+.font-w400 {
+  font-weight: 400;
+}
+
 .font-w700 {
   font-weight: 700;
 }
@@ -96,5 +97,17 @@
 /* color
 ---------------------------------------------------------- */
 .color_g1 {
-  color: colors(gray_1);
+  color: #70757a;
+}
+
+/* separator
+---------------------------------------------------------- */
+.separator {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 50%;
+  border-left: 1px solid #70757a;
+  transform: translateX(-50%);
 }
