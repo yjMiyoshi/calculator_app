@@ -2,6 +2,7 @@
 
 .btn-1 {
     @include btn($color: colors(gray_4), $bg-color: colors(gray_2));
+    @include btn_base;
     border: .1rem solid colors(white);
 
     &:active {
@@ -9,13 +10,9 @@
     }
 }
 
-.btn-2 {
-    @include btn($color: colors(gray_1), $bg-color: colors(gray_2));
-    border: .1rem solid colors(white);
-}
-
 .btn-3 {
     @include btn($color: colors(gray_4), $bg-color: colors(white_2));
+    @include btn_base;
     border: .1rem solid colors(white);
 
     &:active {
@@ -27,10 +24,21 @@
     height: 3.6rem !important;
     margin: .4rem !important;
     @include btn($color: colors(white), $bg-color: colors(blue_2));
+    @include btn_base;
 
     &:active {
         box-shadow: 0 .1rem .2rem 0 colors(shadow_1), 0 .3rem .6rem .2rem colors(shadow_2);
     }
+}
+
+.btn-rad-deg {
+    @include btn($color: colors(gray_4), $bg-color: colors(gray_2));
+    height: 3.8rem;
+    line-height: 3.4rem;
+    margin: .2rem;
+    cursor: pointer;
+    border-radius: .4rem;
+    border: .1rem solid colors(white);
 }
 
 /* width
@@ -69,4 +77,10 @@
 ---------------------------------------------------------- */
 .font-w700 {
     font-weight: 700;
+}
+
+/* color
+---------------------------------------------------------- */
+.color_g1 {
+    color: colors(gray_1);
 }

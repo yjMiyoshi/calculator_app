@@ -17,8 +17,6 @@
 * {
     /* padding と border を幅と高さに含める */
     box-sizing: border-box;
-    /* カーソル設定 */
-    cursor: default;
     /* タップ時に青く光るのを透明にして消す */
     -webkit-tap-highlight-color: colors(black_0);
 }
@@ -44,21 +42,13 @@ input {
     outline: none;
 }
 
-.btn-tr {
+.calc-tr {
     height: 4.4rem;
 
     td {
         height: 4.4rem;
         font-size: 1.6rem;
         line-height: 1.6rem;
-    }
-
-    td>div {
-        // height: 3.8rem;
-        // margin: .2rem;
-        // cursor: pointer;
-        // line-height: 3.4rem;
-        // border-radius: .4rem;
     }
 }
 
@@ -224,7 +214,7 @@ h1 {
 
     table {
         /* セル間の隙間を指定 */
-        border-collapse: collapse;
+        // border-collapse: collapse;
         border-spacing: 0;
         /* ボタン幅を等しくする */
         table-layout: fixed;

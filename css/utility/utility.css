@@ -13,17 +13,6 @@
   border: 0.1rem solid colors(gray_2);
 }
 
-.btn-2 {
-  color: colors(gray_1);
-  background-color: colors(gray_2);
-  height: 3.8rem;
-  margin: .2rem;
-  cursor: pointer;
-  line-height: 3.4rem;
-  border-radius: .4rem;
-  border: 0.1rem solid colors(white);
-}
-
 .btn-3 {
   color: colors(gray_4);
   background-color: colors(white_2);
@@ -53,6 +42,17 @@
 
 .btn-4:active {
   box-shadow: 0 0.1rem 0.2rem 0 colors(shadow_1), 0 0.3rem 0.6rem 0.2rem colors(shadow_2);
+}
+
+.btn-rad-deg {
+  color: colors(gray_4);
+  background-color: colors(gray_2);
+  height: 3.8rem;
+  line-height: 3.4rem;
+  margin: .2rem;
+  cursor: pointer;
+  border-radius: .4rem;
+  border: 0.1rem solid colors(white);
 }
 
 /* width
@@ -91,4 +91,10 @@
 ---------------------------------------------------------- */
 .font-w700 {
   font-weight: 700;
+}
+
+/* color
+---------------------------------------------------------- */
+.color_g1 {
+  color: colors(gray_1);
 }

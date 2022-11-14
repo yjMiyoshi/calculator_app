@@ -455,17 +455,6 @@ template {
   border: 0.1rem solid #dadce0;
 }
 
-.btn-2 {
-  color: #70757a;
-  background-color: #dadce0;
-  height: 3.8rem;
-  margin: .2rem;
-  cursor: pointer;
-  line-height: 3.4rem;
-  border-radius: .4rem;
-  border: 0.1rem solid white;
-}
-
 .btn-3 {
   color: #202124;
   background-color: #f1f3f4;
@@ -495,6 +484,17 @@ template {
 
 .btn-4:active {
   box-shadow: 0 0.1rem 0.2rem 0 rgba(66, 133, 244, 0.45), 0 0.3rem 0.6rem 0.2rem rgba(66, 133, 244, 0.3);
+}
+
+.btn-rad-deg {
+  color: #202124;
+  background-color: #dadce0;
+  height: 3.8rem;
+  line-height: 3.4rem;
+  margin: .2rem;
+  cursor: pointer;
+  border-radius: .4rem;
+  border: 0.1rem solid white;
 }
 
 /* width
@@ -535,12 +535,16 @@ template {
   font-weight: 700;
 }
 
+/* color
+---------------------------------------------------------- */
+.color_g1 {
+  color: #70757a;
+}
+
 /* sp表示 ----------------------------------------------- */
 * {
   /* padding と border を幅と高さに含める */
   box-sizing: border-box;
-  /* カーソル設定 */
-  cursor: default;
   /* タップ時に青く光るのを透明にして消す */
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -566,11 +570,11 @@ input {
   outline: none;
 }
 
-.btn-tr {
+.calc-tr {
   height: 4.4rem;
 }
 
-.btn-tr td {
+.calc-tr td {
   height: 4.4rem;
   font-size: 1.6rem;
   line-height: 1.6rem;
@@ -739,7 +743,6 @@ h1 {
 
 .calc-buttons table {
   /* セル間の隙間を指定 */
-  border-collapse: collapse;
   border-spacing: 0;
   /* ボタン幅を等しくする */
   table-layout: fixed;

@@ -1,7 +1,9 @@
 @mixin btn($color, $bg-color) {
     color: $color;
     background-color: $bg-color;
+}
 
+@mixin btn_base {
     height: 3.8rem;
     margin: .2rem;
     cursor: pointer;
