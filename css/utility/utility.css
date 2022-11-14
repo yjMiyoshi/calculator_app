@@ -1,0 +1,94 @@
+.btn-1 {
+  color: colors(gray_4);
+  background-color: colors(gray_2);
+  height: 3.8rem;
+  margin: .2rem;
+  cursor: pointer;
+  line-height: 3.4rem;
+  border-radius: .4rem;
+  border: 0.1rem solid colors(white);
+}
+
+.btn-1:active {
+  border: 0.1rem solid colors(gray_2);
+}
+
+.btn-2 {
+  color: colors(gray_1);
+  background-color: colors(gray_2);
+  height: 3.8rem;
+  margin: .2rem;
+  cursor: pointer;
+  line-height: 3.4rem;
+  border-radius: .4rem;
+  border: 0.1rem solid colors(white);
+}
+
+.btn-3 {
+  color: colors(gray_4);
+  background-color: colors(white_2);
+  height: 3.8rem;
+  margin: .2rem;
+  cursor: pointer;
+  line-height: 3.4rem;
+  border-radius: .4rem;
+  border: 0.1rem solid colors(white);
+}
+
+.btn-3:active {
+  border: 0.1rem solid colors(gray_2);
+}
+
+.btn-4 {
+  height: 3.6rem !important;
+  margin: .4rem !important;
+  color: colors(white);
+  background-color: colors(blue_2);
+  height: 3.8rem;
+  margin: .2rem;
+  cursor: pointer;
+  line-height: 3.4rem;
+  border-radius: .4rem;
+}
+
+.btn-4:active {
+  box-shadow: 0 0.1rem 0.2rem 0 colors(shadow_1), 0 0.3rem 0.6rem 0.2rem colors(shadow_2);
+}
+
+/* width
+---------------------------------------------------------- */
+.w_33 {
+  width: 33.333333%;
+}
+
+.w_50 {
+  width: 50%;
+}
+
+.w_66 {
+  width: 66.666666%;
+}
+
+/* font-size
+---------------------------------------------------------- */
+.font-s10 {
+  font-size: 1.0rem;
+}
+
+.font-s14 {
+  font-size: 1.4rem;
+}
+
+.font-s15 {
+  font-size: 1.5rem;
+}
+
+.font-s20 {
+  font-size: 2.0rem;
+}
+
+/* font-weight
+---------------------------------------------------------- */
+.font-w700 {
+  font-weight: 700;
+}

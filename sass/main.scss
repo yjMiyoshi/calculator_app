@@ -1,27 +1,16 @@
 // base
 @import 'base/normalize.scss';
-
 // function
 @import 'function/colors.scss';
-
 // layout
 @import 'layout/l_display.scss';
 @import 'layout/l_flex.scss';
-
 // mixin
 @import 'mixin/button.scss';
-
 // module
 @import 'module/history_table.scss';
-@import 'module/button.scss';
-@import 'module/font.scss';
-
-html {
-    font-size: 62.5%;
-    font-size: calc(1em * .625);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+// utility
+@import 'utility/utility.scss';
 
 /* sp表示 ----------------------------------------------- */
 
@@ -32,6 +21,13 @@ html {
     cursor: default;
     /* タップ時に青く光るのを透明にして消す */
     -webkit-tap-highlight-color: colors(black_0);
+}
+
+html {
+    font-size: 62.5%;
+    font-size: calc(1em * .625);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 input {
@@ -58,11 +54,11 @@ input {
     }
 
     td>div {
-        height: 3.8rem;
-        margin: .2rem;
-        cursor: pointer;
-        line-height: 3.4rem;
-        border-radius: .4rem;
+        // height: 3.8rem;
+        // margin: .2rem;
+        // cursor: pointer;
+        // line-height: 3.4rem;
+        // border-radius: .4rem;
     }
 }
 

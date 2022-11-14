@@ -1,4 +1,10 @@
 @mixin btn($color, $bg-color) {
     color: $color;
     background-color: $bg-color;
+
+    height: 3.8rem;
+    margin: .2rem;
+    cursor: pointer;
+    line-height: 3.4rem;
+    border-radius: .4rem;
 }
